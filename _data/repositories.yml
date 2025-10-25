@@ -1,14 +1,13 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - 89jobrien
 
 repo_description_lines_max: 2
 
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+  - 89jobrien/yogurt
+  - 89jobrien/gogurt
+  - 89jobrien/valai
+  - 89jobrien/slogit
+  - 89jobrien/agentic
+  - 89jobrien/code-chatter
+  - 89jobrien/datafool
