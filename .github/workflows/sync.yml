@@ -1,0 +1,33 @@
+name: Sync showcase
+
+on:
+  schedule:
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Fetch latest index.html from bazaar
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/89jobrien/bazaar/main/index.html -o index.html
+          test -s index.html || { echo ERROR: fetched index.html is empty >&2; exit 1; }
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --staged --quiet; then
+            echo "no changes"
+          else
+            git commit -m "chore: sync showcase from bazaar"
+            git push
+          fi
