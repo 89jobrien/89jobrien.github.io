@@ -1,0 +1,20 @@
+project: 89jobrien.github.io
+updated: "20260420:215909"
+
+items: []
+
+log:
+  - session: 1
+    date: "20260420:215909"
+    summary: bootstrapped site — initial showcase page, sync workflow, CLAUDE.md, handoff init
+    commits:
+      - sha: c707087
+        branch: main
+      - sha: d27f4fd
+        branch: main
+      - sha: c54ec36
+        branch: main
+      - sha: c4e524a
+        branch: main
+      - sha: 5f2b002
+        branch: main
