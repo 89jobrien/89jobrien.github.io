@@ -1,9 +1,15 @@
 project: 89jobrien.github.io
-updated: "20260420:215909"
+updated: "20260421:161404"
 
 items: []
 
 log:
+  - session: 2
+    date: "20260421:161404"
+    summary: update profile page usage metrics — sessions, cost, tokens, RTK savings; fix obfsck false positive on profile/ path
+    commits:
+      - sha: 5a0891b
+        branch: main
   - session: 1
     date: "20260420:215909"
     summary: bootstrapped site — initial showcase page, sync workflow, CLAUDE.md, handoff init
