@@ -2,7 +2,7 @@ name: Sync showcase
 
 on:
   schedule:
-    - cron: '30 6 * * *'
+    - cron: "30 6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -11,20 +11,20 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: 89jobrien/bazaar
           path: _bazaar
 
-      - uses: dtolnay/rust-toolchain@3c5f7ea28cd621ae0bf5283f0e981fb97b8a7af9  # stable
+      - uses: dtolnay/rust-toolchain@3c5f7ea28cd621ae0bf5283f0e981fb97b8a7af9 # stable
         with:
           toolchain: stable
 
-      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830  # v4
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: |
             ~/.cargo/registry
@@ -33,12 +33,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cargo-
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+
+      - name: Synthesize insights.yaml
+        run: uv run scripts/synthesize_insights.py --data-dir data/ --out _bazaar/examples/insights.yaml
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
       - name: Build bazaar-gen
         run: cargo build --release -p bazaar-gen
         working-directory: _bazaar
 
       - name: Run generator
-        run: ../target/release/bz --output_dir $GITHUB_WORKSPACE
+        run: ../target/release/bz --output_dir $GITHUB_WORKSPACE --insights examples/insights.yaml
         working-directory: _bazaar
         env:
           BAZAAR_GITHUB_USER: ${{ secrets.BAZAAR_GITHUB_USER }}
