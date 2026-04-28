@@ -1,0 +1,2687 @@
+- name: bazaar
+  description: Claude Code plugin marketplace and showcase generator
+  url: https://github.com/89jobrien/bazaar
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-20T23:22:23Z
+  version: v0.4.0
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "chore: regenerate showcase [skip ci]"
+      date: 2026-04-20T23:22:22Z
+    - message: "chore: regenerate showcase [skip ci]"
+      date: 2026-04-20T11:36:55Z
+    - message: "chore: regenerate showcase [skip ci]"
+      date: 2026-04-20T00:27:49Z
+    - message: "refactor(bazaar-gen): simplify README and clean up html render logic"
+      date: 2026-04-20T00:27:08Z
+    - message: "chore: regenerate showcase [skip ci]"
+      date: 2026-04-19T23:18:16Z
+    - message: "chore: regenerate showcase [skip ci]"
+      date: 2026-04-19T11:19:08Z
+    - message: "docs: update handoff"
+      date: 2026-04-19T07:41:16Z
+    - message: "docs: update CLAUDE.md with bz binary and correct repo description"
+      date: 2026-04-19T07:32:03Z
+    - message: "chore: regenerate showcase [skip ci]"
+      date: 2026-04-19T07:26:34Z
+    - message: "merge: resolve remote regenerate, keep examples deletion"
+      date: 2026-04-19T07:22:01Z
+  readme: |-
+    # Open Source
+
+    Projects I maintain.
+
+
+    _Generated 2026-04-19_
+
+    | Project | Kind | Tags | Description | Updated |
+    |---|---|---|---|---|
+    | [bazaar](https://github.com/89jobrien/bazaar) | Repo | — | Claude Code plugin marketplace and showcase generator | 2026-04-19 |
+    | [atelier](https://github.com/89jobrien/atelier) | Repo / Plugin | `plugins` | Personal Claude Code dev workflow plugin — Rust gates, code review, CI, git safety, multi-repo pulse | 2026-04-19 |
+    | [orca-strait](https://github.com/89jobrien/orca-strait) | Repo / Plugin | `plugins` | Parallel TDD sub-agent orchestrator for Rust workspaces | 2026-04-18 |
+    | [crux](https://github.com/89jobrien/crux) | Repo | `agents` | — | 2026-04-19 |
+    | [obfsck](https://github.com/89jobrien/obfsck) | Repo / Crate | `cli` | Secret-detection and redaction CLI for pre-commit hooks | 2026-04-19 |
+    | [harvestrs](https://github.com/89jobrien/harvestrs) | Repo | `tools` | Polyglot data harvester — syncs Claude memory, git, Obsidian, Pieces to JSONL | 2026-04-19 |
+    | [doob](https://github.com/89jobrien/doob) | Repo / Crate | `cli` | Modern, agent-first todo CLI built with Rust and SurrealDB | 2026-04-19 |
+    | [crux-agentic](https://crates.io/crates/crux-agentic) | Crate | — | Built-in step handlers for crux-script pipelines | 2026-04-18 |
+    | [mcpipe](https://github.com/89jobrien/mcpipe) | Repo | `cli` | Turn any MCP server, OpenAPI spec, or GraphQL endpoint into a shell CLI | 2026-04-18 |
+    | [coursers](https://github.com/89jobrien/coursers) | Repo | `cli` | Claude Code hook — blocks anti-pattern CLI commands and tracks failures | 2026-04-18 |
+    | [rx-rxx](https://crates.io/crates/rx-rxx) | Crate | — | Execute compatible scripts directly | 2026-04-18 |
+    | [rx-registry-json](https://crates.io/crates/rx-registry-json) | Crate | — | JSON registry and HTTP fetcher adapters for rx | 2026-04-18 |
+    | [rx-script-core](https://crates.io/crates/rx-script-core) | Crate | — | Core runtime detection and execution planning f
+- name: atelier
+  description: Personal Claude Code dev workflow plugin — Rust gates, code review, CI, git safety, multi-repo pulse
+  url: https://github.com/89jobrien/atelier
+  kinds:
+    - GitHubRepo
+    - ClaudePlugin
+  language: Shell
+  pushed_at: 2026-04-20T04:00:39Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "fix(handoff): fix sh items sort using two-pass yq map/select"
+      date: 2026-04-20T01:48:35Z
+    - message: "feat(handoff): add generate-ctx-docs helper and step 7 update"
+      date: 2026-04-20T01:20:59Z
+    - message: "chore: set plugin version to 77fee82"
+      date: 2026-04-19T07:38:35Z
+    - message: "feat(skills): add cleanup skill for merged branch pruning"
+      date: 2026-04-19T07:38:32Z
+    - message: "chore: set plugin version to 2da8ce6"
+      date: 2026-04-19T07:37:35Z
+    - message: "feat(skills): add merge skill for branch integration workflow"
+      date: 2026-04-19T07:37:34Z
+    - message: "chore: set plugin version to 8eea4d5"
+      date: 2026-04-19T07:37:22Z
+    - message: "feat(skills): add using-gkg skill with mcpipe SSE endpoint"
+      date: 2026-04-19T07:37:21Z
+    - message: "chore: set plugin version to 766eddc"
+      date: 2026-04-19T00:13:29Z
+    - message: "fix(handoff-reconcile): resolve valerie script via cache glob fallback"
+      date: 2026-04-19T00:13:27Z
+  tags:
+    - plugins
+  readme: |-
+    # atelier
+
+    Personal dev workflow plugin — Rust gates, code review, CI, git safety,
+    multi-repo pulse.
+
+    ## Installation
+
+    ```bash
+    claude plugin add github:89jobrien/atelier
+    ```
+
+    Requires `sanctum` for the session-start hook chain:
+
+    ```bash
+    claude plugin add github:89jobrien/sanctum
+    ```
+
+    For local repo development, use:
+
+    ```bash
+    cd ~/dev/atelier
+    just init
+    ```
+
+    That keeps the Claude plugin installed and also mirrors `skills/`, `bin/`, and the repo root
+    into Codex-visible locations on machines that have `~/.codex/`.
+
+    ## Skills
+
+    | Skill              | Trigger Phrases                                                   |
+    | ------------------ | ----------------------------------------------------------------- |
+    | onboard            | "onboard me", "walk me through setup", `/atelier:onboard`         |
+    | cargo-gate         | "run gates", "validate rust", "pre-commit check"                  |
+    | sentinel-autofixer | "autofix", "apply review fixes", "fix sentinel suggestions"       |
+    | hook-diagnostics   | "failhook", "show hook status", "what hooks ran"                  |
+    | git-guard          | "safe to commit", "check merge strategy", "commit safely"         |
+    | ci-assist          | "edit workflow", "fix CI", "check cross-compile", "verify binary" |
+    | project-pulse      | "end session", "capture state", "session summary"                 |
+    | handoff            | "write handoff", "end of session", "capture handoff"              |
+    | handon             | "handon", "start session", "what's outstanding"                   |
+    | handover           | "visualize the handoff", "show handoff", "generate diagrams"      |
+
+    ## Agents
+
+    > Currently delegates agent logic to devkit and likely always will
+
+    | Agent     | Purpose                                            |
+    | --------- | -------------------------------------------------- |
+    | sentinel  | Structured code review                             |
+    | forge     | Dev companion — design, debug, refactor            |
+    | herald    | Cross-repo syn
+- name: orca-strait
+  description: Parallel TDD sub-agent orchestrator for Rust workspaces
+  url: https://github.com/89jobrien/orca-strait
+  kinds:
+    - GitHubRepo
+    - ClaudePlugin
+  language: Shell
+  pushed_at: 2026-04-18T09:05:06Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "chore: set plugin version to b388aa0"
+      date: 2026-04-18T09:05:03Z
+    - message: "fix: inline hooks into plugin.json for Claude Code compatibility"
+      date: 2026-04-18T09:05:02Z
+    - message: "chore: set plugin version to 167d8a3"
+      date: 2026-04-13T23:48:56Z
+    - message: Merge branch 'main' of https://github.com/89jobrien/orca-strait
+      date: 2026-04-13T23:48:55Z
+    - message: "chore: set plugin version to 5b10fd6"
+      date: 2026-04-13T23:48:48Z
+    - message: "chore: add pre-push version-stamp hook, switch install to bazaar"
+      date: 2026-04-13T23:48:39Z
+    - message: Fix formatting in solid-principles.md
+      date: 2026-04-07T18:01:43Z
+    - message: "refactor: flatten plugin structure, remove nested orca-strait/ subdirectory"
+      date: 2026-04-05T23:23:25Z
+    - message: "fix: auto-bump version in pre-commit — patch on modify, minor on new files"
+      date: 2026-04-05T22:42:50Z
+    - message: "feat: add justfile init, .githooks, and onboard skill"
+      date: 2026-04-05T20:54:19Z
+  tags:
+    - plugins
+  readme: |-
+    # orca-strait
+
+    Parallel sub-agent orchestrator for Rust workspaces.
+
+    Reads open GitHub issues, `HANDOFF.*` files, and an implementation plan; decomposes
+    work by crate; spawns independent sub-agents with strict test-first discipline and
+    hexagonal architecture enforcement; then integrates the results.
+
+    ## Installation
+
+    ```bash
+    claude plugin add github:89jobrien/orca-strait
+    ```
+
+    ## Components
+
+    | Component | Type | Purpose |
+    |-----------|------|---------|
+    | `orca-strait` | Skill + Command | Full workflow — gather context, decompose, dispatch, integrate |
+    | `tdd-crate-agent` | Agent | Per-crate TDD implementor |
+    | `check-blocked` | Hook (PostToolUse/Agent) | Surfaces BLOCKED.md immediately after any agent call |
+
+    ## Usage
+
+    ### Slash command
+
+    ```
+    /orca-strait
+    /orca-strait /path/to/repo
+    /orca-strait --dry-run
+    ```
+
+    ### Prose (skill trigger)
+
+    > "Implement the open issues in parallel using TDD agents"
+    > "Run the handoff tasks across the workspace"
+    > "Spawn crate agents for the implementation plan"
+
+    ## Workflow
+
+    ```
+    gh issue list → .ctx/git/issues/open.json
+    HANDOFF.*   ──┐
+    PLAN.md     ──┴── decompose.sh → task list → dispatch.sh → waves
+                                                    │
+                                  ┌─────────────────┼──────────────────┐
+                              Wave 1             Wave 2 ...          Blocked
+                           (≤5 agents)        (after wave 1)    (after deps)
+                                  │
+                             tdd-crate-agent × N
+                             (RED → GREEN → CLEAN → commit)
+                                  │
+                        cargo nextest --workspace
+                        cargo clippy --workspace -- -D warnings
+    ```
+
+    ## Architecture Enforcement
+
+    Every sub-agent is required to follow SOLID/hexagonal architecture:
+
+    - New external dependencies → trait (port) in domain layer first
+    - Implementations → adapters in
+- name: crux
+  description: null
+  url: https://github.com/89jobrien/crux
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-20T20:25:46Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "fix(script): apply sentinel suggestion-level fixes"
+      date: 2026-04-20T20:25:45Z
+    - message: "feat(script): harden confidence semantics and update docs"
+      date: 2026-04-20T19:22:51Z
+    - message: "feat(script): add HandlerOutput with optional confidence emission"
+      date: 2026-04-20T18:54:56Z
+    - message: "refactor: extract wire-format types into cruxx-types crate"
+      date: 2026-04-20T18:16:16Z
+    - message: "docs: add cruxx-types extraction plan (minibox Phase 0 prereq)"
+      date: 2026-04-20T18:00:17Z
+    - message: "feat(examples): add enrichment pipeline examples with input stubs"
+      date: 2026-04-20T17:56:23Z
+    - message: "docs: update handoff — all items closed"
+      date: 2026-04-20T17:39:46Z
+    - message: "feat(agentic): add DockerContainerClient adapter behind docker feature"
+      date: 2026-04-20T17:33:55Z
+    - message: "feat(planner): add LlmPlanner for BAML-based goal-to-pipeline generation"
+      date: 2026-04-20T17:31:24Z
+    - message: "docs: update handoff"
+      date: 2026-04-20T17:22:08Z
+  tags:
+    - agents
+  readme: |-
+    # cruxx
+
+    An agentic DSL for Rust -- inspectable, serializable, replayable agent execution.
+
+    `cruxx` is not a standalone language. It's a set of macros, traits, and types that make agentic
+    control flow explicit in the Rust type system. If you've written agents with `tokio` + `tracing`
+    \+ a hand-rolled task queue, `cruxx` is what happens when you bake those patterns into the language
+    itself.
+
+    ## Quick example
+
+    ```rust
+    use cruxx::prelude::*;
+
+    #[cruxx::agent]
+    async fn plan_trip(goal: String) -> Crux<Itinerary> {
+        let research = x.step("research", || search_web(&goal)).await?;
+
+        let draft = x.delegate::<DraftAgent>("draft", &research)
+            .with_budget(Budget::tokens(4000))
+            .on_low_confidence(0.7, escalate_to_human)
+            .await?;
+
+        x.speculate("finalize", [
+            ("cheap", || finalize_cheap(&draft)),
+            ("fast",  || finalize_fast(&draft)),
+            ("safe",  || finalize_safe(&draft)),
+        ]).pick_best_by(|r| r.confidence).await
+    }
+    ```
+
+    Every `x.step`, `x.delegate`, `x.speculate` call is recorded in the `Crux<T>` value
+    the function returns. That value is:
+
+    - **Inspectable** -- `cruxx.causal_chain()`, `cruxx.delegations()`, `cruxx.rejected_branches()`
+    - **Serializable** -- `serde_json::to_string(&cruxx)` just works
+    - **Replayable** -- `Crux::replay_from(snapshot)` resumes after a crash
+    - **Composable** -- `cruxx_a | cruxx_b`, `Crux::join_all([...])`
+
+    ## Crates
+
+    | Crate                                   | Description                                              |
+    | --------------------------------------- | -------------------------------------------------------- |
+    | [`cruxx`](crates/cruxx)                 | Facade crate -- re-exports `cruxx-core` + `cruxx-macros`            |
+    | [`cruxx-core`](crates/cruxx-core)       | Core types, traits, and runtime                                     |
+    | [`cruxx-macros`](crates/cruxx-macros)   | `#[cruxx::agent]`, `#[cruxx::harness]`, `#[cruxx::evolve]` macros   |
+    | [`cruxx-script`](crates/cruxx-script)   | YAM
+- name: cruxx
+  description: An agentic DSL for Rust — inspectable, serializable, replayable agent execution
+  url: https://crates.io/crates/cruxx
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-20T07:33:27.910671Z
+  version: 0.2.5
+  stars: null
+  downloads: 9
+  recent_commits: []
+- name: cruxx-planner
+  description: Goal-to-pipeline planner for cruxx-script
+  url: https://crates.io/crates/cruxx-planner
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-20T07:33:23.755124Z
+  version: 0.2.5
+  stars: null
+  downloads: 9
+  recent_commits: []
+- name: cruxx-agentic
+  description: Built-in step handlers for cruxx-script pipelines
+  url: https://crates.io/crates/cruxx-agentic
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-20T07:18:20.025219Z
+  version: 0.2.5
+  stars: null
+  downloads: 10
+  recent_commits: []
+- name: cruxx-plugin
+  description: Subprocess plugin host for cruxx pipelines
+  url: https://crates.io/crates/cruxx-plugin
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-20T07:04:54.467106Z
+  version: 0.2.5
+  stars: null
+  downloads: 12
+  recent_commits: []
+- name: cruxx-script
+  description: YAML-driven pipeline scripting for the cruxx agentic DSL
+  url: https://crates.io/crates/cruxx-script
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-20T07:04:38.048805Z
+  version: 0.2.5
+  stars: null
+  downloads: 13
+  recent_commits: []
+- name: cruxx-model
+  description: Canonical model ID types and provider-specific parsers for cruxx
+  url: https://crates.io/crates/cruxx-model
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-20T07:03:59.941585Z
+  version: 0.2.5
+  stars: null
+  downloads: 12
+  recent_commits: []
+- name: cruxx-core
+  description: Core types, traits, and runtime for the cruxx agentic DSL
+  url: https://crates.io/crates/cruxx-core
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-20T07:03:49.856865Z
+  version: 0.2.5
+  stars: null
+  downloads: 13
+  recent_commits: []
+- name: cruxx-macros
+  description: Proc macros for the cruxx agentic DSL
+  url: https://crates.io/crates/cruxx-macros
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-20T07:03:36.638066Z
+  version: 0.2.5
+  stars: null
+  downloads: 11
+  recent_commits: []
+- name: obfsck
+  description: Secret-detection and redaction CLI for pre-commit hooks
+  url: https://github.com/89jobrien/obfsck
+  kinds:
+    - GitHubRepo
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-20T03:31:17Z
+  version: 0.1.0
+  stars: null
+  downloads: 15
+  recent_commits:
+    - message: "docs: close all handoff items after branch merge"
+      date: 2026-04-20T03:31:05Z
+    - message: "merge: integrate refactor/pattern-source-port into main"
+      date: 2026-04-20T03:30:46Z
+    - message: "fix(analyzer): add Send + Sync bounds to LlmProvider trait"
+      date: 2026-04-20T03:26:28Z
+    - message: "docs: migrate handoff to HANDOFF.<name>.<base>.yaml"
+      date: 2026-04-19T20:25:39Z
+    - message: "ci: add CodeRabbit review config"
+      date: 2026-04-19T01:14:16Z
+    - message: "ci: add CodeRabbit review config"
+      date: 2026-04-19T01:14:16Z
+    - message: "refactor(api): share AlertAnalyzer via Arc in AppState (obfsck-15)"
+      date: 2026-04-19T00:46:55Z
+    - message: "test(paths): add obfuscate_paths unit tests (obfsck-13)"
+      date: 2026-04-19T00:21:52Z
+    - message: "fix(analyzer): extract_json_object() uses bracket-counting, not find/rfind (#16)"
+      date: 2026-04-18T22:00:30Z
+    - message: "fix(build): validate_patterns() panics loudly on empty fields (#15)"
+      date: 2026-04-18T21:59:54Z
+  tags:
+    - cli
+  readme: "# obfsck\n\nRedacts secrets and PII from log lines and structured text.\n\n## Install\n\n```bash\ncargo install --path .\n```\n\n## What it does\n\n## What it does\n\n- Replaces secrets with labeled tokens (for example `[REDACTED-AWS-KEY]`)\n- Obfuscates identifiers with stable mappings (same input => same token)\n- Supports privacy levels based on how aggressive redaction should be\n\n## Obfuscation levels\n\n- `Minimal`: secret pattern redaction only\n- `Standard`: adds IP, email, container ID, and user obfuscation\n- `Paranoid`: adds path, hostname, and high-entropy token redaction\n\nPath obfuscation supports Unix, Windows drive paths, and UNC paths. Sensitive system paths are preserved.\n\nPreserved path segments include common roots like `home`, `usr`, `etc`, `windows`, `users`, and `programdata`.\n\n## Run locally with `cargo` or use the `mise.toml`:\n\n```bash\n# check / build / test\nmise run check\nmise run build\nmise run test\n\n# formatting\nmise run format\nmise run format-check\n\n# linting\nmise run lint\n\n# auto-fix clippy suggestions\nmise run fix\n\n# local CI bundle\nmise run ci\n```\n\n\n## Examples\n\n### Obfuscation alert\n\n- Processed 250 records\n- Max tokens in a single record: ips=2 users=1 emails=1\n\n```text\nSample before: event_id=evt-0000 user=user0 src=10.1.1.1 dst=198.51.100.10 email=user0@corp.example host=service0.corp.example path=/var/lib/app0/env0.json\n\nSample after : event_id=evt-0000 user=[USER-1] src=[IP-INTERNAL-1] dst=[IP-EXTERNAL-1] email=[EMAIL-1] host=[HOST-1] path=/var/lib/app0/[FILE].json\n\n```\n\n```text\nObfuscated output: Some(\"incident=AUTH-48291 severity=high | actor=bob src=[IP-EXTERNAL-1] dst=[IP-INTERNAL-1] | email=[EMAIL-1] host=[HOST-1] | path=/home/bob/.aws/credentials | token=[REDACTED-GITHUB-TOKEN]\")\nObfuscated fields keys: [\"file_path\", \"workstation\", \"dst_ip\", \"notes\", \"jump_host\", \"src_ip\", \"contact\", \"host\", \"actor\", \"command\"]\nToken counts => ips: 3, users: 0, emails: 1, hosts: 4, containers: 0, secrets: 1\n```\n\n### Larger payloads\n\n- Token totals => ips: 500, "
+- name: rx
+  description: null
+  url: https://github.com/89jobrien/rx
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-20T03:12:27Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "docs: close rx-1 handoff item, add crate READMEs"
+      date: 2026-04-20T03:12:22Z
+    - message: "chore: move rx skills to global ~/.claude/skills"
+      date: 2026-04-20T03:09:14Z
+    - message: "refactor: introduce hexagonal ports/adapters across workspace"
+      date: 2026-04-20T02:58:10Z
+    - message: "chore: add version constraints to path deps for crates.io publishing"
+      date: 2026-04-18T07:04:34Z
+    - message: "chore: rename crates for crates.io publishing"
+      date: 2026-04-18T07:04:04Z
+    - message: "feat(rx-1): wire changed-path args into shell preflight"
+      date: 2026-04-18T06:30:50Z
+    - message: "feat: move preflight.rs to .ctx/scripts, add plugin scaffolding and skills"
+      date: 2026-04-18T06:28:03Z
+    - message: "docs: update handoff"
+      date: 2026-04-17T22:56:17Z
+    - message: "docs: update handoff"
+      date: 2026-04-17T02:35:44Z
+    - message: "feat: add command expansion and CI workflows"
+      date: 2026-04-17T02:32:48Z
+  readme: |-
+    # rx
+
+    `rx` installs compatible scripts from local paths or remote URLs into a local command
+    directory and records what it installed in a JSON registry.
+
+    ## What It Does
+
+    `rx` accepts three source types:
+
+    - a single local file
+    - a local directory, scanned recursively
+    - a remote HTTP or HTTPS URL for a single script
+
+    Installed scripts are copied into the target install directory, marked executable on Unix, and
+    written to a registry so the installed command set can be discovered later.
+
+    ## Default Locations
+
+    Unless you override the install directory on the command line, `rx` uses XDG-style config paths:
+
+    - install directory: `~/.config/rx/bin`
+    - registry file: `~/.config/rx/registry.json`
+    - prefix config: `~/.config/rx/prefixes.toml`
+
+    If `XDG_CONFIG_HOME` is set, `rx` uses `$XDG_CONFIG_HOME/rx` instead of `~/.config/rx`.
+
+    ## Installation
+
+    Install the CLIs from this repo:
+
+    ```bash
+    cargo install --path crates/rx-install
+    cargo install --path crates/rxx
+    ```
+
+    If the crates are published on crates.io and release artifacts are available, `cargo-binstall`
+    installs by package name:
+
+    ```bash
+    cargo binstall rx-install
+    cargo binstall rxx
+    ```
+
+    `cargo-binstall` resolves crate metadata from crates.io and then looks at the linked repository
+    releases for matching binary artifacts. It does not use the GitHub repo URL as the primary install
+    argument.
+
+    Or from crates.io when published:
+
+    ```bash
+    cargo install rx-install
+    cargo install rxx
+    ```
+
+    For local development, bootstrap the pinned toolchain with:
+
+    ```bash
+    mise install
+    ```
+
+    ## Usage
+
+    ```bash
+    rx install <source>
+    rx install <source> --install-dir <dir>
+    rx list
+    rx run <name> [-- <args...>]
+    rx <command> [args...]
+    rxx <script> [-- <args...>]
+    ```
+
+    For local development from the workspace root:
+
+    ```bash
+    cargo run --quiet -p rx-install --bin rx -- list
+    cargo run --quiet -p rx-install --bin rx -- run preflight
+    cargo run --quiet -p rxx --bin rxx -- ./scripts/preflight.sh
+    cargo run --quiet -p rxx --bin rxx -- ./.ctx/scripts/preflight.rs
+    ```
+
+    Exam
+- name: 89jobrien.github.io
+  description: Personal site
+  url: https://github.com/89jobrien/89jobrien.github.io
+  kinds:
+    - GitHubRepo
+  language: HTML
+  pushed_at: 2026-04-20T03:06:45Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: quick
+      date: 2026-04-20T03:06:35Z
+    - message: "chore: sync showcase from bazaar"
+      date: 2026-04-17T22:05:52Z
+    - message: "ci: add showcase sync workflow"
+      date: 2026-04-17T22:05:27Z
+    - message: "chore: regenerate showcase"
+      date: 2026-04-17T21:55:39Z
+    - message: "feat: initial site — bazaar showcase"
+      date: 2026-04-17T21:49:07Z
+- name: harvestrs
+  description: Polyglot data harvester — syncs Claude memory, git, Obsidian, Pieces to JSONL
+  url: https://github.com/89jobrien/harvestrs
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-19T01:14:46Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "ci: add CodeRabbit review config"
+      date: 2026-04-19T01:14:15Z
+    - message: "fix(dedup): include source ID in content hash to prevent cross-source dedup collisions (#2) (#13)"
+      date: 2026-04-18T19:06:31Z
+    - message: "fix(facets): skip malformed JSON files instead of aborting harvest (#8) (#12)"
+      date: 2026-04-18T19:06:16Z
+    - message: "fix(sync): use full slug as project key to prevent name collisions (#6) (#11)"
+      date: 2026-04-18T19:05:42Z
+    - message: "fix(config): remove hardcoded iCloud vault path fallback (#4) (#10)"
+      date: 2026-04-18T19:04:06Z
+    - message: "fix(sync): skip vault write when content is unchanged (#3) (#9)"
+      date: 2026-04-18T19:03:56Z
+    - message: "fix(cli): use PathBuf for tilde expansion in --dedup-db path (#1)"
+      date: 2026-04-18T13:49:05Z
+    - message: "docs: add README"
+      date: 2026-04-14T12:55:05Z
+    - message: "fix: add license field, remove unused deps (deny + machete)"
+      date: 2026-04-07T00:13:02Z
+    - message: "ci: standardize CI workflows and git hooks"
+      date: 2026-04-07T00:06:30Z
+  tags:
+    - tools
+  readme: |
+    # harvestrs
+
+    Polyglot data harvester — syncs Claude memory, git commits, Obsidian notes, and Pieces activities to JSONL.
+
+    ## Install
+
+    ```bash
+    cargo install --path crates/cli
+    ```
+
+    ## Usage
+
+    ```
+    harvestrs [OPTIONS]
+    ```
+
+    ### Options
+
+    ```
+    -o, --output <FILE>              Write harvested items to a file (default: stdout)
+        --dedup-db <PATH>            SQLite dedup database (default: ~/.harvestrs/dedup.db)
+        --vault <PATH>               Obsidian vault root (overrides OBSIDIAN_VAULT_PATH env var)
+        --no-sync                    Skip syncing Claude memory to vault
+        --git-max-commits <N>        Max git commits to harvest per repo (default: 20)
+        --disable-source <SOURCE>    Disable a source; can repeat. Values: facets, memory, git, obsidian, pieces
+    ```
+
+    ### Sources
+
+    | Source | What it collects |
+    |--------|-----------------|
+    | `memory` | Claude Code project memory from `~/.claude/projects` |
+    | `facets` | Claude usage-data facets from `~/.claude/usage-data/facets` |
+    | `git` | Recent commits from git repos detected under `~/dev` |
+    | `obsidian` | Daily notes from `<vault>/_daily` |
+    | `pieces` | Pieces app activity via its local API |
+
+    Each run syncs new Claude memory files to the Obsidian vault, then harvests all enabled sources, deduplicates against the SQLite store, and emits new items as JSONL to stdout or a file.
+
+    ### Examples
+
+    ```bash
+    # Harvest all sources to stdout
+    harvestrs
+
+    # Write to a file, skipping git
+    harvestrs -o out.jsonl --disable-source git
+
+    # Use a custom vault path
+    harvestrs --vault ~/Documents/my-vault
+
+    # Disable memory sync and limit git commits
+    harvestrs --no-sync --git-max-commits 5
+    ```
+
+    ## License
+
+    MIT OR Apache-2.0
+- name: doob
+  description: Modern, agent-first todo CLI built with Rust and SurrealDB
+  url: https://github.com/89jobrien/doob
+  kinds:
+    - GitHubRepo
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-19T01:14:45Z
+  version: 0.1.0
+  stars: null
+  downloads: 11
+  recent_commits:
+    - message: "ci: add CodeRabbit review config"
+      date: 2026-04-19T01:14:07Z
+    - message: "fix(add): only link deps to the first todo in a batch add (#7)"
+      date: 2026-04-18T17:57:45Z
+    - message: "fix: expand status allowlist to include todo statuses and fix test infra (#3) (#13)"
+      date: 2026-04-18T19:04:49Z
+    - message: "docs: update handoff — doob-6 gh-sync complete"
+      date: 2026-04-10T20:40:07Z
+    - message: "feat: pretty table output for gh-sync, --json support, dry-run by default"
+      date: 2026-04-10T20:38:49Z
+    - message: "fix: dry-run by default, --execute to perform real sync"
+      date: 2026-04-10T20:34:38Z
+    - message: "fix: cargo fmt"
+      date: 2026-04-10T19:15:06Z
+    - message: "fix: code quality — UUID validation, gh check hoisted, test fixed, comments added"
+      date: 2026-04-10T19:13:45Z
+    - message: "fix: pass action hint from hook so complete/remove are synced"
+      date: 2026-04-10T19:05:15Z
+    - message: "fix: clippy warnings and missing trait imports in gh_sync module"
+      date: 2026-04-10T19:01:53Z
+  tags:
+    - cli
+  readme: "# doob\n\nModern, agent-first todo CLI built with Rust and SurrealDB.\n\n## Features\n\n- **Fast** - Rust + SurrealDB embedded\n- **Agent-First** - JSON output, batch operations, context detection\n- **Single Binary** - No dependencies\n- **Context-Aware** - Auto-detects project and file from git\n\n## Installation\n\n```bash\ncargo install --path .\n```\n\n## Commands\n\n```bash\n# Add a todo (auto-detects project/file from git)\ndoob todo add \"Fix auth bug\"\n\n# Add with priority and tags\ndoob todo add \"Refactor code\" --priority 1 --tags refactor,urgent\n\n# Batch add\ndoob todo add \"Task 1\" \"Task 2\" \"Task 3\"\n\n# List todos\ndoob todo list\n\n# Filter by status or project\ndoob todo list --status pending\ndoob todo list --project myproject --limit 10\n\n# Complete todo(s)\ndoob todo complete <id>\ndoob todo complete <id1> <id2> <id3>\n\n# Undo completion (mark as pending)\ndoob todo undo <id>\n\n# Set or clear a due date\ndoob todo due <id> 2026-03-15\ndoob todo due <id> clear\n\n# Remove todo(s)\ndoob todo remove <id>\ndoob todo remove <id1> <id2>\n```\n\n## Sync to External Issue Trackers\n\n**Status:** Foundation Complete (Phase 1 & 2) ✅\n\nSync your doob todos to external issue trackers using a plugin architecture.\n\n### Supported Providers\n\n- ✅ **Beads** (bd CLI) - Complete\n- 🚧 **GitHub Issues** - Planned\n- 🚧 **Jira** - Planned\n- 🚧 **Linear** - Planned\n- 🚧 **kan** - Planned\n\n### Architecture\n\nBuilt with hexagonal architecture:\n- **Domain Layer** - Business logic, validation, error handling\n- **Ports** - `IssueTracker` trait interface\n- **Adapters** - Provider-specific implementations (CLI delegation)\n- **Tests** - 19 unit/integration tests (100% passing)\n\n### Documentation\n\n- [Testing Guide](docs/sync/testing.md)\n- [Beads Provider](docs/sync/providers/beads.md)\n\n### Roadmap\n\n**Phase 3: Metadata & Repository** (Next)\n- SurrealDB repository for sync metadata\n- Track external IDs, sync timestamps, errors\n- Multi-provider support per todo\n\n**Phase 4: CLI Commands**\n- `doob sync to --provider beads` - "
+- name: crux-agentic
+  description: Built-in step handlers for crux-script pipelines
+  url: https://crates.io/crates/crux-agentic
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-18T23:42:19.260031Z
+  version: 0.2.3
+  stars: null
+  downloads: 49
+  recent_commits: []
+- name: mcpipe
+  description: Turn any MCP server, OpenAPI spec, or GraphQL endpoint into a shell CLI
+  url: https://github.com/89jobrien/mcpipe
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-18T13:49:23Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "fix(secret): strip CRLF not just LF from file: prefix (#8)"
+      date: 2026-04-18T13:47:34Z
+    - message: Merge branch 'main' of github.com:89jobrien/mcpipe
+      date: 2026-04-18T13:46:58Z
+    - message: "docs: add README"
+      date: 2026-04-14T12:54:52Z
+    - message: "docs: update handoff"
+      date: 2026-04-12T03:55:21Z
+    - message: "feat(mcpipe-21): add PathBinaryScanner — auto-discover obfsck-mcp via --scan"
+      date: 2026-04-12T03:52:41Z
+    - message: "docs: add unblocks field to mcpipe-21"
+      date: 2026-04-11T19:48:28Z
+    - message: "docs: add mcpipe-21 — obfsck server integration required by coursers-11"
+      date: 2026-04-11T04:39:10Z
+    - message: "docs: update handoff"
+      date: 2026-04-07T01:24:21Z
+    - message: "fix: ignore RUSTSEC-2025-0134 (rustls-pemfile, transitive, no fix)"
+      date: 2026-04-07T00:15:55Z
+    - message: "style: cargo fmt"
+      date: 2026-04-07T00:12:07Z
+  tags:
+    - cli
+  readme: |
+    # mcpipe
+
+    Turn any MCP server, OpenAPI spec, or GraphQL endpoint into a shell CLI.
+
+    ## Install
+
+    ```bash
+    cargo install --path .
+    ```
+
+    ## Usage
+
+    ```
+    mcpipe --mcp-stdio <cmd> [SUBCOMMAND] [ARGS]
+    mcpipe --mcp <url> [SUBCOMMAND] [ARGS]
+    mcpipe --spec <file-or-url> [SUBCOMMAND] [ARGS]
+    mcpipe --graphql <url> [SUBCOMMAND] [ARGS]
+    mcpipe --cli <cmd> [SUBCOMMAND] [ARGS]
+    ```
+
+    ### Backends
+
+    | Flag | Source |
+    |------|--------|
+    | `--mcp-stdio <cmd>` | MCP server over stdio |
+    | `--mcp <url>` | MCP server over HTTP/SSE |
+    | `--spec <path\|url>` | OpenAPI 3.x spec (JSON or YAML) |
+    | `--graphql <url>` | GraphQL endpoint (introspection) |
+    | `--cli <cmd>` | Existing shell CLI (help-text parsing) |
+
+    ### Global flags
+
+    ```
+    --list                List available commands and exit
+    --scan                Scan Claude config and workspace for MCP sources
+    --pretty              Pretty-print JSON output
+    --raw                 Output raw string values
+    --jq <expr>           Apply a jq-style filter to the response
+    --head <n>            Limit array output to first n items
+    --search <term>       Filter listed commands by name
+    --refresh             Bypass cache and re-fetch schema
+    --cache-ttl <secs>    Schema cache TTL in seconds (default: 3600)
+    --auth-header <k:v>   Auth header; value may be env:VAR or keychain:ITEM
+    --header <k:v>        Extra request header
+    --base-url <url>      Override base URL for OpenAPI backends
+    --gen-openapi         Generate an OpenAPI spec from a CLI backend
+    --openapi-output <p>  Output path for generated spec
+    ```
+
+    ### Examples
+
+    ```bash
+    # List all operations in a local OpenAPI spec
+    mcpipe --spec ./petstore.json --list
+
+    # Call an MCP server tool
+    mcpipe --mcp-stdio "uvx my-mcp-server" call-tool --arg value
+
+    # Query a GraphQL endpoint
+    mcpipe --graphql https://api.example.com/graphql --list
+
+    # Wrap an existing CLI
+    mcpipe --cli gh --list
+    mcpipe --cli gh issue list
+
+    # Generate an OpenAPI spec from a CLI
+    mcpipe --cli mycli --gen-openapi
+    ```
+
+    ## License
+
+    MIT OR Apache-2.0
+- name: coursers
+  description: Claude Code hook — blocks anti-pattern CLI commands and tracks failures
+  url: https://github.com/89jobrien/coursers
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-18T13:46:20Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "refactor(expand): introduce VarExpander trait + with_env! test macro"
+      date: 2026-04-18T13:46:17Z
+    - message: "docs: update handoff"
+      date: 2026-04-18T12:19:03Z
+    - message: "feat(crs): add insights subcommand with git context enrichment"
+      date: 2026-04-18T11:49:03Z
+    - message: "chore: deduplicate .ctx gitignore block from handoff-init"
+      date: 2026-04-18T06:55:39Z
+    - message: "feat(stats): record live block counts per rule, add crs stats subcommand"
+      date: 2026-04-18T06:53:26Z
+    - message: "docs: update handoff — prune done items, add 2026-04-18 log entry, fix .gitignore for .ctx/"
+      date: 2026-04-18T06:39:41Z
+    - message: "feat(pre): block ls with Glob redirect + eza file-tree in deny message"
+      date: 2026-04-18T06:36:32Z
+    - message: "chore: rename handoff file to .ctx/ convention and update Cargo.lock"
+      date: 2026-04-18T06:17:34Z
+    - message: "feat(crs): add rx-audit subcommand"
+      date: 2026-04-17T20:01:59Z
+    - message: "fix: apply council recommendations — serde-saphyr, ProbeStore trait, CRS_CTX_DIR path, || tie-breaking tests"
+      date: 2026-04-17T19:57:49Z
+  tags:
+    - cli
+  readme: |-
+    # coursers
+
+    Claude Code hook pipeline for course-correcting AI-generated Bash commands.
+
+    Two tools:
+
+    - **`coursers`** — PreToolUse/PostToolUse hooks that block bad commands and learn from failures
+    - **`crs`** — output filter and command rewriter
+
+    ---
+
+    ## How It Works
+
+    ### Rule-based blocking (`coursers pre`)
+
+    Reads the Claude Code `PreToolUse` JSON payload from stdin. If the `Bash` tool's command
+    matches a rule in `~/.claude/hooks/course-correct-rules.json`, the hook returns a `deny`
+    response with a human-readable message.
+
+    Rules support:
+
+    - Regex pattern matching (with optional `i` flag)
+    - Exception patterns — allow a command through even if the main pattern matches
+    - Per-rule messages
+
+    ### Learned failure tracking (`coursers post`)
+
+    Reads the `PostToolUse` payload. When a `Bash` command exits non-zero (excluding signals and
+    intentional failures), it records the command in a rolling failure log. If the same command
+    fails ≥ N times in a sliding window, `coursers pre` will block it on the next attempt.
+
+    This catches commands that aren't covered by static rules but are clearly not working.
+
+    ---
+
+    ## Installation
+
+    ```sh
+    cargo install --path crates/coursers
+    cargo install --path crates/crs
+    ```
+
+    Wire into `~/.claude/settings.json`:
+
+    ```json
+    {
+      "hooks": {
+        "PreToolUse": [
+          {
+            "matcher": "Bash",
+            "hooks": [
+              { "type": "command", "command": "coursers pre" },
+              { "type": "command", "command": "crs rewrite" }
+            ]
+          }
+        ],
+        "PostToolUse": [
+          {
+            "matcher": "Bash",
+            "hooks": [
+              { "type": "command", "command": "coursers post" },
+              { "type": "command", "command": "crs filter" }
+            ]
+          }
+        ]
+      }
+    }
+    ```
+
+    `crs rewrite` and `crs filter` are optional — run `coursers` alone if you only want blocking
+    and failure learning.
+
+    ---
+
+    ## Configuration
+
+    Rules file: `~/.claude/hooks/course-correct-rules.json`
+    (override with `COURSERS_RULES` env var)
+
+    ```json
+    {
+      "rules": [
+        {
+          "id"
+- name: rx-rxx
+  description: Execute compatible scripts directly
+  url: https://crates.io/crates/rx-rxx
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-18T07:05:01.068084Z
+  version: 0.1.0
+  stars: null
+  downloads: 10
+  recent_commits: []
+- name: rx-registry-json
+  description: JSON registry and HTTP fetcher adapters for rx
+  url: https://crates.io/crates/rx-registry-json
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-18T07:04:46.194699Z
+  version: 0.1.0
+  stars: null
+  downloads: 10
+  recent_commits: []
+- name: rx-script-core
+  description: Core runtime detection and execution planning for rx
+  url: https://crates.io/crates/rx-script-core
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-18T07:04:12.919826Z
+  version: 0.1.0
+  stars: null
+  downloads: 13
+  recent_commits: []
+- name: cruxai
+  description: An agentic DSL for Rust — inspectable, serializable, replayable agent execution
+  url: https://crates.io/crates/cruxai
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-17T20:22:28.979321Z
+  version: 0.2.1
+  stars: null
+  downloads: 35
+  recent_commits: []
+- name: cruxai-script
+  description: YAML-driven pipeline scripting for the cruxai agentic DSL
+  url: https://crates.io/crates/cruxai-script
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-17T20:22:19.898003Z
+  version: 0.2.1
+  stars: null
+  downloads: 55
+  recent_commits: []
+- name: cruxai-macros
+  description: Proc macros for the cruxai agentic DSL
+  url: https://crates.io/crates/cruxai-macros
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-17T20:22:07.564880Z
+  version: 0.2.1
+  stars: null
+  downloads: 43
+  recent_commits: []
+- name: cruxai-core
+  description: Core types, traits, and runtime for the cruxai agentic DSL
+  url: https://crates.io/crates/cruxai-core
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-17T20:21:56.223989Z
+  version: 0.2.1
+  stars: null
+  downloads: 65
+  recent_commits: []
+- name: slashcrux
+  description: Shared vocabulary types for the Slash and Crux agentic Rust ecosystem
+  url: https://github.com/89jobrien/slashcrux
+  kinds:
+    - GitHubRepo
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-17T20:18:20Z
+  version: 0.1.1
+  stars: null
+  downloads: 76
+  recent_commits:
+    - message: "refactor: rename StepStatus -> StepState (lifecycle vs outcome distinction)"
+      date: 2026-04-17T20:18:17Z
+    - message: "feat: initial release — shared vocabulary types for Slash and Crux"
+      date: 2026-04-17T20:15:11Z
+  tags:
+    - agents
+- name: valerie
+  description: Claude Code plugin for task and todo management via doob
+  url: https://github.com/89jobrien/valerie
+  kinds:
+    - GitHubRepo
+    - ClaudePlugin
+  language: Shell
+  pushed_at: 2026-04-17T03:59:27Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "fix: add missing handoff-reconcile.sh, correct default shell to sh"
+      date: 2026-04-17T03:59:26Z
+    - message: "feat: initial valerie plugin — task and todo management specialist"
+      date: 2026-04-17T02:30:03Z
+  tags:
+    - plugins
+  readme: |
+    # valerie
+
+    Task and todo management specialist — doob CLI integration, council report ingestion,
+    HANDOFF reconciliation.
+
+    ## Installation
+
+    ```bash
+    claude plugin marketplace add https://github.com/89jobrien/bazaar
+    claude plugin install valerie@bazaar
+    ```
+
+    ## Skills
+
+    | Skill   | Trigger Phrases                                                                  |
+    | ------- | -------------------------------------------------------------------------------- |
+    | valerie | "add a todo", "what should I work on", "capture from HANDOFF", "audit my todos" |
+
+    ## Workflows
+
+    1. **Direct CRUD** — add, list, complete, remove todos via doob
+    2. **Council Report → Todos** — parse devloop council output into prioritized todos
+    3. **HANDOFF → Reconciliation** — sync HANDOFF items into doob, avoid duplicates
+    4. **HANDOFF Cleanup** — prune closed items, write back capture status
+    5. **Audit** — cross-reference doob todos against HANDOFF, surface gaps
+
+    ## Backend
+
+    Valerie uses `doob` by default. If doob is not installed, it scaffolds a thin sqlite
+    wrapper with the same command surface. Run the setup prompt on first use to configure.
+
+    ## Rules
+
+    - Valerie is the **only** skill that should touch `doob` or run GitHub issue sync.
+      All other skills use `handoff-db`/SQLite and HANDOFF YAML only.
+    - For HANDOFF reconciliation, call `handoff-reconcile` first; direct `doob` is the
+      fallback/debug path.
+- name: hj
+  description: Handoff state, reconciliation, rendering, and handup surveys
+  url: https://github.com/89jobrien/hj
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-17T01:28:12Z
+  version: v0.1.2
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "feat: add ci workflow and refresh visual demo"
+      date: 2026-04-17T01:27:41Z
+    - message: "refactor: derive state files from session context"
+      date: 2026-04-16T11:40:14Z
+    - message: "fix: rebind nested handoff state paths"
+      date: 2026-04-16T11:11:29Z
+    - message: "release: v0.1.2"
+      date: 2026-04-16T10:44:59Z
+    - message: "chore: add mise project config"
+      date: 2026-04-16T10:44:01Z
+    - message: "feat: add examples and shared reconcile plan"
+      date: 2026-04-16T10:36:22Z
+    - message: "refactor: split hj-cli into library modules"
+      date: 2026-04-16T10:12:34Z
+    - message: "docs: add workspace and crate readmes"
+      date: 2026-04-16T09:53:00Z
+    - message: "fix: preserve generated handoff state ignores"
+      date: 2026-04-16T09:43:33Z
+    - message: "feat: add install and update commands"
+      date: 2026-04-16T09:38:43Z
+  tags:
+    - agents
+  readme: |-
+    # hj
+
+    `hj` is a Rust workspace for handoff state, reconciliation, rendering, and handup surveys.
+
+    ## Workspace Crates
+
+    | Crate | Purpose | README |
+    |---|---|---|
+    | `hj-cli` | Top-level CLI and installed binaries | [`crates/hj-cli/README.md`](./crates/hj-cli/README.md) |
+    | `hj-core` | Shared handoff and handup data types plus priority/title helpers | [`crates/hj-core/README.md`](./crates/hj-core/README.md) |
+    | `hj-doob` | `doob` reconciliation helpers and priority mapping | [`crates/hj-doob/README.md`](./crates/hj-doob/README.md) |
+    | `hj-git` | Repo discovery, `.ctx` scaffolding, handoff scanning, and gitignore management | [`crates/hj-git/README.md`](./crates/hj-git/README.md) |
+    | `hj-render` | Markdown rendering for structured handoff state | [`crates/hj-render/README.md`](./crates/hj-render/README.md) |
+    | `hj-sqlite` | SQLite persistence for handoff rows and handup checkpoints | [`crates/hj-sqlite/README.md`](./crates/hj-sqlite/README.md) |
+
+    ## Workspace Features
+
+    | Area | What it covers |
+    |---|---|
+    | Structured handoff state | YAML-backed `HANDOFF.*.yaml` plus gitignored per-project session state files under `.ctx/` |
+    | Repo discovery | Detect repo roots, infer project names, and migrate legacy root handoffs |
+    | Handoff rendering | Render active items and recent log entries to `HANDOFF.md` |
+    | Handup survey | Scan nested repos and TODO markers, emit `HANDUP.json`, and checkpoint the run |
+    | SQLite sync | Persist handoff rows in `~/.local/share/atelier/handoff.db` and handup checkpoints in `~/.ctx/handoffs/handup.db` |
+    | Doob reconciliation | Audit or sync handoff items against `doob` todos |
+    | Installed binary management | Install the current checkout or update to the latest published `hj-cli` release |
+
+    ## Workspace Commands
+
+    ### Installed Binaries
+
+    | Binary | Role |
+    |---|---|
+    | `hj` | Main CLI |
+    | `handoff` | Shortcut for `hj handoff` |
+    | `handon` | Shortcut for `hj handon` |
+    | `handover` | Shortcut for `hj handover` |
+    | `handoff-detect` | Shortcut for `hj dete
+- name: hj-cli
+  description: CLI for handoff state, reconciliation, and handup surveys
+  url: https://crates.io/crates/hj-cli
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-16T10:49:00.113250Z
+  version: 0.1.2
+  stars: null
+  downloads: 11
+  recent_commits: []
+- name: hj-render
+  description: Markdown rendering for hj handoff workflows
+  url: https://crates.io/crates/hj-render
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-16T10:48:40.318249Z
+  version: 0.1.2
+  stars: null
+  downloads: 25
+  recent_commits: []
+- name: hj-doob
+  description: Doob integration helpers for hj handoff workflows
+  url: https://crates.io/crates/hj-doob
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-16T10:48:40.097995Z
+  version: 0.1.2
+  stars: null
+  downloads: 27
+  recent_commits: []
+- name: hj-sqlite
+  description: SQLite backing stores for hj handoff workflows
+  url: https://crates.io/crates/hj-sqlite
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-16T10:48:39.860929Z
+  version: 0.1.2
+  stars: null
+  downloads: 23
+  recent_commits: []
+- name: hj-git
+  description: Git and repo discovery utilities for hj handoff workflows
+  url: https://crates.io/crates/hj-git
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-16T10:48:37.111269Z
+  version: 0.1.2
+  stars: null
+  downloads: 23
+  recent_commits: []
+- name: hj-core
+  description: Core data types for hj handoff workflows
+  url: https://crates.io/crates/hj-core
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-16T10:48:15.416904Z
+  version: 0.1.2
+  stars: null
+  downloads: 41
+  recent_commits: []
+- name: rx-install
+  description: Install rust-script scripts from local directories, files, and URLs
+  url: https://crates.io/crates/rx-install
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-15T17:48:33.647352Z
+  version: 0.1.0
+  stars: null
+  downloads: 10
+  recent_commits: []
+- name: cannibalizer
+  description: Absorb foreign repos into the Rust ecosystem — extract, classify, and generate hexagonal components
+  url: https://github.com/89jobrien/cannibalizer
+  kinds:
+    - GitHubRepo
+    - ClaudePlugin
+  language: Rust
+  pushed_at: 2026-04-14T13:38:33Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "feat(cnbl): cnbl exec subcommand — apply migration plan (#11)"
+      date: 2026-04-14T13:38:23Z
+    - message: "feat(cnbl): cnbl gen subcommand — emit hexagonal scaffold stubs (#10)"
+      date: 2026-04-14T13:38:17Z
+    - message: "feat(cnbl): cnbl plan subcommand — route harvest to migration plan (#9)"
+      date: 2026-04-14T13:38:10Z
+    - message: "feat(cnbl): ecosystem routing — load repos.json and route HarvestItems (#8)"
+      date: 2026-04-14T13:38:04Z
+    - message: "feat(cnbl): wire scan pipeline and harvest report (#6, #7)"
+      date: 2026-04-14T13:32:20Z
+    - message: "feat(cnbl): implement classifier with 10-rule priority chain (#5)"
+      date: 2026-04-14T13:30:55Z
+    - message: "feat(cnbl): integrate tree-sitter parsers for Python, Go, and Shell (#4)"
+      date: 2026-04-14T13:29:06Z
+    - message: "feat(cnbl): implement repo walker with ignore rules and language detection (#3)"
+      date: 2026-04-14T13:29:01Z
+    - message: "feat(cnbl): add clap CLI skeleton with scan, plan, gen, exec subcommands, fix close #2"
+      date: 2026-04-14T13:27:46Z
+    - message: "feat(cnbl): define core data model types, fix close #1"
+      date: 2026-04-14T13:27:08Z
+  tags:
+    - plugins
+  readme: |
+    # cannibalizer
+
+    Claude Code plugin — absorbs foreign repos into the Rust ecosystem.
+
+    Scans a source repo, classifies every file by kind (domain type, port, adapter,
+    script, spec, config), then routes each item to the right destination: ported to
+    a hexagonal Rust component, absorbed into an existing repo, converted to a skill,
+    or archived to the SSD vault.
+
+    ## Install
+
+    Add to your Claude Code plugins via bazaar:
+
+    ```json
+    {
+      "name": "cannibalizer",
+      "source": { "source": "github", "repo": "89jobrien/cannibalizer" }
+    }
+    ```
+
+    ## Usage
+
+    Point it at a repo:
+
+    ```
+    cannibalize ~/ai-vault
+    cannibalize ~/agent-os
+    ```
+
+    The skill will scan, classify, generate a harvest plan, and execute with your
+    approval at each step.
+
+    ## Scripts
+
+    `skills/cannibalizer/scripts/scan.nu` — Nushell scanner that emits a JSONL
+    stream of classified files from the target repo.
+
+    ## License
+
+    MIT OR Apache-2.0
+- name: looprs
+  description: Just tools in a loop.
+  url: https://github.com/89jobrien/looprs
+  kinds:
+    - GitHubRepo
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-14T12:57:13Z
+  version: v0.2.0
+  stars: 1
+  downloads: 11
+  recent_commits:
+    - message: "docs: audit and trim README"
+      date: 2026-04-14T12:57:13Z
+    - message: "fix: log SessionEnd, outsource command reads config"
+      date: 2026-04-08T01:41:56Z
+    - message: "fix: model badge quality fixes (dead code, Path, BTreeMap, labels)"
+      date: 2026-04-07T21:51:05Z
+    - message: "fix: badge refresh loop, limit reward to last 50, insta snapshot test"
+      date: 2026-04-07T21:41:54Z
+    - message: "fix: badge refresh loop, limit reward to last 50, insta snapshot test"
+      date: 2026-04-07T21:41:25Z
+    - message: "feat: add model badge to desktop UI (version, reward, training status)"
+      date: 2026-04-07T21:36:33Z
+    - message: "docs: add models.toml.example and magi integration setup guide"
+      date: 2026-04-07T21:26:39Z
+    - message: "fix: command error handling, model name validation, safe TOML patching"
+      date: 2026-04-07T21:23:51Z
+    - message: "fix: OnRepeat trigger fires exactly at count==3, not repeatedly"
+      date: 2026-04-07T21:22:54Z
+    - message: "feat: add /model-status /fine-tune /reset-model /score-session /outsource commands"
+      date: 2026-04-07T21:17:31Z
+  tags:
+    - tools
+  readme: |-
+    # looprs
+
+    A Rust LLM agent loop CLI. Tools, loops, and conditions — no convoluted markdown parsing system.
+
+    ## Install
+
+    ```bash
+    git clone https://github.com/89jobrien/looprs.git
+    cd looprs
+    cargo build --release
+    ./target/release/looprs
+    # or: cargo install --path .
+    ```
+
+    ## Configure
+
+    Pick a provider:
+
+    ```bash
+    # Anthropic
+    export ANTHROPIC_API_KEY="sk-ant-..."
+    looprs
+
+    # OpenAI
+    export OPENAI_API_KEY="sk-..."
+    export MODEL="gpt-4-turbo"
+    looprs
+
+    # Local (Ollama)
+    ollama serve  # in another terminal
+    export PROVIDER="local"
+    looprs
+
+    # SDK-backed providers
+    export PROVIDER="openai-sdk"      # openai-sdk | anthropic-sdk | claude-sdk
+    looprs
+    ```
+
+    Persistent config: `.looprs/provider.json`. All env options: `.env.example`.
+
+    ## Built-in Tools
+
+    | Tool | Description |
+    |------|-------------|
+    | `/read` | Read files with line pagination |
+    | `/write` | Create or overwrite files |
+    | `/edit` | Replace text in files |
+    | `/glob` | Find files by name pattern (faster with `fd`) |
+    | `/grep` | Search file contents (faster with `rg`) |
+    | `/bash` | Execute shell commands |
+
+    Optional speedups (auto-detected, falls back to pure Rust):
+
+    ```bash
+    cargo install ripgrep fd-find
+    ```
+
+    ## File References
+
+    Reference files in prompts with `@filename` syntax — contents are injected into the conversation.
+
+    ```
+    Refactor @src/main.rs for better error handling
+    Compare @file1.rs and @file2.rs
+    ```
+
+    ## Extensibility
+
+    The `.looprs/` directory defines agent configuration. All extension points support dual-source loading: user-level (`~/.looprs/`) and repo-level (`.looprs/`), with repo taking precedence.
+
+    ```
+    .looprs/
+    ├── provider.json          # Provider settings
+    ├── config.json            # Global config
+    ├── commands/              # Custom slash commands (/)
+    ├── hooks/                 # Event-driven hooks (YAML)
+    ├── skills/                # Skills with progressive disclosure ($)
+    ├── agents/                # Agent role definitions (YAML)
+    └── rules/                 # Constraints
+- name: peeprs
+  description: Claude Code session logs dashboard
+  url: https://github.com/89jobrien/peeprs
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-14T12:55:18Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "docs: add README"
+      date: 2026-04-14T12:55:18Z
+    - message: "feat: add 7 new dashboard components for token, tool, duration, timeline, cache, error, and hook analytics"
+      date: 2026-03-01T23:47:03Z
+    - message: "chore: stop ignoring AGENTS.md, CLAUDE.md, and *.public.md"
+      date: 2026-03-01T22:37:31Z
+    - message: "feat: add multi-agent log source support"
+      date: 2026-03-01T22:36:17Z
+    - message: Ignore all markdown files except README.md
+      date: 2026-03-01T20:46:22Z
+    - message: "Tighten .gitignore: add editor swap files, .DS_Store, .env"
+      date: 2026-03-01T20:46:05Z
+    - message: "Initial commit: Claude logs dashboard"
+      date: 2026-03-01T20:43:46Z
+  tags:
+    - tools
+  readme: |
+    # peeprs
+
+    Claude Code session logs dashboard — Axum web server that scans agent log directories and serves a high-density summary UI.
+
+    ## Install
+
+    ```bash
+    cargo install --path .
+    ```
+
+    ## Usage
+
+    ```
+    peeprs [OPTIONS]
+    ```
+
+    ### Options
+
+    ```
+        --root <PATH>           Log root directory (default: ~/logs/agents)
+        --host <HOST>           Bind address (default: 127.0.0.1)
+        --port <PORT>           Listen port (default: 8765)
+        --refresh-seconds <N>   Dashboard auto-refresh interval (default: 10)
+        --cache-seconds <N>     In-memory summary cache TTL (default: 5)
+        --cache-db <PATH>       SQLite scan cache path (default: <root>/.peeprs.db)
+    ```
+
+    ### Endpoints
+
+    | Route | Description |
+    |-------|-------------|
+    | `GET /` | HTML dashboard |
+    | `GET /api/summary` | JSON summary of all scanned logs |
+    | `GET /healthz` | Health check |
+
+    ### What it displays
+
+    - Totals: files, events, bytes
+    - Events by type and day
+    - Top sessions by event count
+    - Recent events with preview text
+    - Per-agent stats
+    - Token usage (input, output, cache read/write)
+    - Tool usage frequency
+    - Turn duration distribution
+    - Session timeline
+    - Hook performance
+    - Cache efficiency and error rates
+
+    Logs are expected in a structured directory layout: `<root>/<agent>/<day>/<session>/<channel>.*`. Files may be plain JSONL or gzip-compressed.
+
+    ### Examples
+
+    ```bash
+    # Start with defaults
+    peeprs
+
+    # Custom log root and port
+    peeprs --root ~/dev/logs --port 9000
+
+    # Faster refresh, persistent scan cache
+    peeprs --refresh-seconds 5 --cache-db ~/.peeprs/cache.db
+    ```
+
+    ## License
+
+    MIT
+- name: notfiles
+  description: Nix-based dotfiles and system configuration
+  url: https://github.com/89jobrien/notfiles
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-14T12:54:51Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "docs: note absorption of pj into notfiles workspace"
+      date: 2026-04-14T12:54:51Z
+    - message: "fix: address blocking sentinel findings (unsafe SAFETY comment, unwrap panics)"
+      date: 2026-04-01T12:59:28Z
+    - message: "test(integration): improve cross_crate test clarity"
+      date: 2026-04-01T10:33:34Z
+    - message: "test(integration): add cross-crate boundary tests"
+      date: 2026-04-01T10:32:07Z
+    - message: "test(integration): improve test clarity with expect() and constants"
+      date: 2026-04-01T09:14:27Z
+    - message: "test(integration): add bootstrap flow tests via notstrap::run()"
+      date: 2026-04-01T09:11:50Z
+    - message: "chore: add integration test crate to workspace"
+      date: 2026-04-01T09:01:42Z
+    - message: "fix(notstrap): fix clippy warning and unwrap panics in lib extraction"
+      date: 2026-04-01T09:00:26Z
+    - message: "refactor(notstrap): extract run() into lib with BootstrapOptions"
+      date: 2026-04-01T08:57:32Z
+    - message: "docs: add integration tests implementation plan"
+      date: 2026-04-01T08:47:21Z
+  tags:
+    - cli
+    - infra
+  readme: |-
+    # notfiles
+
+    A pure-Rust dotfiles manager — and eventually, a complete new-machine bootstrap system.
+
+    `notfiles` started as a Rust replacement for [GNU Stow](https://www.gnu.org/software/stow/). It's growing into a **Cargo workspace** of focused crates that together replace an entire shell-script-based dotfiles ecosystem.
+
+    ---
+
+    ## Quick Start
+
+    ```bash
+    # Symlink your dotfiles
+    notfiles link
+
+    # Check status
+    notfiles status
+
+    # Remove symlinks
+    notfiles unlink
+    ```
+
+    On a new machine (once `notstrap` ships):
+
+    ```bash
+    cargo install notstrap
+    notstrap run
+    ```
+
+    ---
+
+    ## Workspace Architecture
+
+    ```
+    notfiles/
+    ├── crates/
+    │   ├── notcore/        # shared types, config, paths, errors
+    │   ├── notfiles/       # symlink engine (stow replacement)  ← you are here
+    │   ├── notsecrets/     # age key retrieval + sops decrypt
+    │   ├── nothooks/       # hook execution engine
+    │   └── notstrap/       # new-machine bootstrap orchestrator
+    ├── notfiles.toml       # symlink package config
+    └── notstrap.toml       # bootstrap hook/phase config
+    ```
+
+    ### Crate responsibilities
+
+    | Crate | Type | Does |
+    |-------|------|------|
+    | `notcore` | lib | Shared types, config, paths, errors — no deps on other crates |
+    | `notfiles` | lib + bin | Symlink/copy packages into `$HOME`, track state |
+    | `notsecrets` | lib | Retrieve age key → sops decrypt → inject secrets |
+    | `nothooks` | lib + bin | Run bootstrap hooks in phases, skip already-run setup hooks |
+    | `notstrap` | bin | Orchestrate everything on a fresh machine |
+
+    ### Dependency graph
+
+    ```
+    notstrap
+      ├── notfiles
+      │     └── notcore
+      ├── notsecrets
+      │     └── notcore
+      └── nothooks
+            └── notcore
+    ```
+
+    `notcore` is the only shared dependency. No circular deps.
+
+    ---
+
+    ## How `notfiles` Works
+
+    Each subdirectory of your dotfiles repo is a **package**. `notfiles link` walks each package and symlinks its contents into a target directory (default: `$HOME`),
+- name: rascal
+  description: Rust Semantic Code Linter
+  url: https://github.com/89jobrien/rascal
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-14T12:54:33Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "docs: standardize README"
+      date: 2026-04-14T12:54:33Z
+    - message: Enhance README with features section
+      date: 2026-04-13T19:29:38Z
+    - message: Initialize README with project overview
+      date: 2026-04-13T19:26:23Z
+    - message: "docs: add handoff"
+      date: 2026-04-13T16:55:43Z
+    - message: "feat: initial rascal implementation"
+      date: 2026-04-13T16:50:04Z
+    - message: "chore: initial scaffold"
+      date: 2026-04-13T02:28:41Z
+  tags:
+    - tools
+  readme: |
+    # rascal
+
+    Semantic code linter for Rust. Parses `.rs` files into chunks via tree-sitter, scores each chunk against a corpus of golden idiomatic examples using cosine similarity, and flags anything below the configured threshold.
+
+    > Note: `StubEmbedder` is active until issue #1 (OpenAI-compatible embedder) lands — all scores are currently 0.0 / passing.
+
+    ## Install
+
+    ```bash
+    cargo install --path .
+    ```
+
+    ## Usage
+
+    ```bash
+    rascal check <file>           # score all chunks in a file
+    rascal check <file> --json    # machine-readable output
+    rascal index <file>           # add a file to the corpus
+    rascal index --from <dir>     # add all .rs files in a directory tree
+    rascal corpus list            # list corpus entries
+    rascal corpus clear           # remove all corpus entries
+    ```
+
+    `check` exits 0 if all chunks pass, 1 if any fail.
+
+    ## Configuration
+
+    `~/.config/rascal/config.toml` — all fields are optional.
+
+    ```toml
+    api_url   = "https://api.openai.com/v1"
+    api_key   = "sk-..."
+    model     = "text-embedding-3-small"
+    threshold = 0.75   # cosine similarity cutoff (default: 0.75)
+
+    # chunk kinds scored during check (default: function, impl_block, trait)
+    check_kinds = ["function", "impl_block", "trait", "struct", "enum"]
+    ```
+
+    The corpus is stored at `~/.local/share/rascal/corpus.db` (SQLite).
+
+    ## License
+
+    MIT OR Apache-2.0
+- name: sanctum
+  description: Personal Claude Code plugin — 1Password and direnv session management
+  url: https://github.com/89jobrien/sanctum
+  kinds:
+    - GitHubRepo
+    - ClaudePlugin
+  language: Go
+  pushed_at: 2026-04-13T23:48:48Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "chore: add pre-push version-stamp hook, switch install to bazaar"
+      date: 2026-04-13T23:48:35Z
+    - message: "docs: sanctum binary design spec + handoff update"
+      date: 2026-04-06T16:00:35Z
+    - message: "fix: auto-bump version in pre-commit — patch on modify, minor on new files"
+      date: 2026-04-05T22:42:58Z
+    - message: "feat: add justfile init, .githooks, and onboard skill"
+      date: 2026-04-05T20:54:34Z
+    - message: "fix: author must be object not string"
+      date: 2026-04-05T17:52:13Z
+    - message: "docs: add installation instructions"
+      date: 2026-04-05T17:51:02Z
+    - message: "chore: simplify author field in plugin.json"
+      date: 2026-04-05T17:44:10Z
+    - message: "chore: move plugin.json → .claude-plugin/plugin.json (standard structure)"
+      date: 2026-04-05T17:09:51Z
+    - message: "docs: update handoff"
+      date: 2026-04-05T16:57:08Z
+    - message: "chore: rename plugin joe-secrets → sanctum"
+      date: 2026-04-05T16:53:08Z
+  tags:
+    - plugins
+  readme: |
+    # sanctum
+
+    1Password and direnv session management — secrets validation and env chain tracing.
+
+    ## Installation
+
+    ```bash
+    claude plugin add github:89jobrien/sanctum
+    ```
+
+    ## Skills
+
+    | Skill | Trigger |
+    |-------|---------|
+    | op-resolver | "resolve secrets", "check 1password", "debug env", `/sanctum:op-resolver` |
+
+    ## Hooks
+
+    `SessionStart` — runs automatically on every new Claude session:
+
+    1. Validates `op account list`
+    2. Traces `.envrc` `source_up` chain from CWD
+    3. Counts `op://` refs and detects literal URIs in environment
+    4. Returns system message to Claude with readiness summary
+
+    ## Slash Command
+
+    `/sanctum:op-resolver` — invoke op-resolver on demand mid-session.
+
+    ## Prerequisites
+
+    - 1Password CLI (`op`) installed and on PATH
+    - `direnv` installed (optional — chain tracing degrades gracefully without it)
+    - Install `atelier` for `handon` skill that session-start chains into
+- name: fmtx
+  description: null
+  url: https://github.com/89jobrien/fmtx
+  kinds:
+    - GitHubRepo
+  language: Rust
+  pushed_at: 2026-04-13T21:30:34Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "docs: update CLAUDE.md with config path gotcha and format_args"
+      date: 2026-04-13T21:30:31Z
+    - message: "docs: update handoff — session end 2026-04-13"
+      date: 2026-04-13T21:28:14Z
+    - message: "feat: format_args field, lint+autofix config, integration tests"
+      date: 2026-04-13T21:26:55Z
+    - message: "docs: add README and update CLAUDE.md for multi-command support"
+      date: 2026-04-13T21:04:01Z
+    - message: "docs: update handoff — fmtx-1 done"
+      date: 2026-04-13T20:26:35Z
+    - message: "feat: multi-command support per extension (fmtx-1)"
+      date: 2026-04-13T20:25:55Z
+    - message: "docs: add handoff"
+      date: 2026-04-13T16:55:43Z
+    - message: "feat: initial fmtx — file extension to formatter dispatcher"
+      date: 2026-04-13T02:06:46Z
+  tags:
+    - cli
+  readme: |
+    # fmtx
+
+    File extension to formatter dispatcher. Maps file extensions to formatter commands via a TOML
+    config and runs them — optionally in check mode for CI and pre-commit hooks.
+
+    ## Usage
+
+    ```bash
+    fmtx <file>           # format in place
+    fmtx --check <file>   # check only (non-zero exit if the file would change)
+    ```
+
+    Files with no extension, or extensions not in config, exit 0 silently.
+
+    ## Install
+
+    ```bash
+    cargo install --path .
+    ```
+
+    ## Config
+
+    `~/.config/fmtx/config.toml`
+
+    **Single command:**
+
+    ```toml
+    [extensions.rs]
+    command = "rustfmt"
+    args = []
+    check_args = ["--check"]
+    ```
+
+    **Multiple commands** (run in sequence, stop on first failure):
+
+    ```toml
+    [extensions.rs]
+    commands = [
+      { command = "rustfmt", args = [], check_args = ["--check"] },
+      { command = "my-linter", args = [], check_args = [] },
+    ]
+    ```
+
+    `args` are always passed. `check_args` are appended only when `--check` is given. The file path
+    is always the final argument. Extension keys are case-insensitive.
+
+    ### Example full config
+
+    ```toml
+    [extensions.rs]
+    command = "rustfmt"
+    check_args = ["--check"]
+
+    [extensions.sh]
+    command = "shfmt"
+    args = ["-w"]
+    check_args = ["-d"]
+
+    [extensions.py]
+    command = "ruff"
+    args = ["format"]
+    check_args = ["format", "--check"]
+
+    [extensions.toml]
+    command = "taplo"
+    args = ["format"]
+    check_args = ["format", "--check"]
+
+    [extensions.md]
+    command = "dprint"
+    args = ["fmt"]
+    check_args = ["check"]
+    ```
+
+    ## As a Claude Code hook
+
+    In `~/.claude/settings.json`, replace per-extension shell conditionals with a single hook:
+
+    ```json
+    {
+      "hooks": {
+        "PostToolUse": [
+          {
+            "matcher": "Edit|Write|MultiEdit",
+            "hooks": [
+              { "type": "command", "command": "fmtx \"$CLAUDE_FILE_PATH\"" }
+            ]
+          }
+        ]
+      }
+    }
+    ```
+
+    ## Exit codes
+
+    | Condition | Exit code |
+    |-----------|-----------|
+    | Formatted successfully | 0 |
+    | No extension / extension not configured | 0 |
+    | Config file missing or invalid | 1 |
+    | Formatter exited non-zero | 1 |
+    | Formatter killed by signal | 1 |
+- name: rusty-hooks
+  description: PostToolUse validation hook for Claude Code — blocks Edit/Write when on-disk content diverges from expected
+  url: https://crates.io/crates/rusty-hooks
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-12T22:31:24.579183Z
+  version: 0.1.0
+  stars: null
+  downloads: 11
+  recent_commits: []
+- name: slash-cmd
+  description: CLI for the slash-command language
+  url: https://crates.io/crates/slash-cmd
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-12T22:21:14.454502Z
+  version: 0.1.0
+  stars: null
+  downloads: 12
+  recent_commits: []
+- name: slash-testing
+  description: Proptest strategies and harness configuration for testing slash-command language parsers
+  url: https://crates.io/crates/slash-testing
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-12T22:20:40.803525Z
+  version: 0.1.0
+  stars: null
+  downloads: 11
+  recent_commits: []
+- name: slash-lib
+  description: Executor types and high-level API for the slash-command language
+  url: https://crates.io/crates/slash-lib
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-12T22:20:30.589964Z
+  version: 0.1.0
+  stars: null
+  downloads: 15
+  recent_commits: []
+- name: slash-lang
+  description: Parser and AST for the slash-command language
+  url: https://crates.io/crates/slash-lang
+  kinds:
+    - CratesIo
+  language: Rust
+  pushed_at: 2026-04-12T22:19:22.090671Z
+  version: 0.1.0
+  stars: null
+  downloads: 16
+  recent_commits: []
+- name: dotfiles
+  description: null
+  url: https://github.com/89jobrien/dotfiles
+  kinds:
+    - GitHubRepo
+  language: Shell
+  pushed_at: 2026-04-12T03:53:29Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "fix(direnv): remove unsafe global source_up_if_exists; guard nushell hook against empty export"
+      date: 2026-04-12T03:52:16Z
+    - message: "feat(direnv): add first-class direnv integration"
+      date: 2026-04-11T05:58:43Z
+    - message: Merge remote-tracking branch 'origin/main'
+      date: 2026-04-11T05:57:24Z
+    - message: "fix(devkit): POSIX-compatible helper sourcing with git-root guard"
+      date: 2026-04-11T01:42:54Z
+    - message: "fix(devkit): trap temp log cleanup, extract shared helper"
+      date: 2026-04-11T01:41:49Z
+    - message: "fix(devkit): robust branch detection and consistent shell strictness"
+      date: 2026-04-11T01:39:38Z
+    - message: "fix(devkit): harden install path, branch detection, and presence checks"
+      date: 2026-04-11T01:37:55Z
+    - message: "feat(devkit): wire devkit commands into mise tasks and bootstrap"
+      date: 2026-04-11T01:35:35Z
+    - message: "feat(claude): add cargo-check hook, commit/review/analyze skills, headless tasks"
+      date: 2026-04-11T01:30:49Z
+    - message: "feat(claude): add dot-claude/ dir and setup-claude-config.sh hook"
+      date: 2026-04-11T01:08:16Z
+  readme: |-
+    # Dotfiles
+
+    [![CI](https://github.com/89jobrien/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/89jobrien/dotfiles/actions/workflows/ci.yml)
+
+    Reproducible dev environment bootstrap with a managed (immutable) core and local (mutable) overrides. Supports macOS, Linux, and Windows (via NixOS-WSL).
+
+    ## Quick start
+
+    **macOS / Linux:**
+
+    ```bash
+    pj dot install
+    # or without pj:
+    ALLOW_DIRECT_DOTFILES_INSTALL=1 ./install.sh
+    ```
+
+    **Windows** (elevated PowerShell):
+
+    ```powershell
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    .\install.ps1
+    ```
+
+    Installs NixOS-WSL, native Windows dev tools via winget, then runs `nixos-rebuild switch` + `home-manager switch` inside NixOS. See [Windows bootstrap](#windows-nixos-wsl) for details.
+
+    ### Task Runners
+
+    Three equivalent interfaces for day-2 operations:
+    - **Human workflow**: `mise run <task>` (interactive, colored output)
+    - **AI/automation**: `just <recipe>` (scriptable, agent-friendly)
+    - **Compatibility**: `make <target>` (legacy wrapper)
+
+    All task definitions live in `.mise.toml`, `Justfile`, and `Makefile` respectively.
+
+    ### Interactive Menu
+
+    Quick-access TUI for exploring and running dotfiles commands:
+
+    ```bash
+    mise run menu      # Start interactive menu
+    just menu          # Alternative via Just
+    make menu          # Alternative via Make
+    ```
+
+    The menu provides guided navigation to:
+    - **Scripts** - Run bootstrap, setup tools, configuration scripts
+    - **Tasks** - Execute any mise task (doctor, drift, deploy, etc.)
+    - **Documentation** - View CLAUDE.md, README, setup guides
+    - **Repository** - Explore structure, list scripts, file statistics
+    - **Git Operations** - Status, commits, branch management, create new branches
+    - **Utilities** - Run doctor checks, drift detection, secret validation, hook verification
+
+    Ideal for interactive exploration and quick task execution without memorizing commands.
+
+    ### Testing & Validation
+
+    ```bash
+    mise run test              # run all tests
+    mise run test-lib          # run library tests onl
+- name: steve
+  description: Steve's not here, man.
+  url: https://github.com/89jobrien/steve
+  kinds:
+    - GitHubRepo
+  language: Python
+  pushed_at: 2026-04-11T04:47:59Z
+  version: null
+  stars: 4
+  downloads: null
+  recent_commits:
+    - message: "fix: add ruff as dev dependency"
+      date: 2026-04-09T11:49:44Z
+    - message: "fix: load_local_registry returns correct default for missing path"
+      date: 2026-04-05T00:34:08Z
+    - message: "chore: archive components from .claude project"
+      date: 2026-03-04T05:07:46Z
+    - message: Update .gitignore
+      date: 2026-01-06T02:49:47Z
+    - message: "chore: Code formatting fixes and index rebuild"
+      date: 2026-01-05T23:00:33Z
+    - message: "feat(agents): Add new agents for unused tools and Skill() syntax support"
+      date: 2026-01-05T22:11:48Z
+    - message: "feat(scripts): Add analysis scripts from gaw"
+      date: 2026-01-05T21:56:08Z
+    - message: Move frontmatter scripts to scripts/ and update .gitignore
+      date: 2025-12-29T17:06:36Z
+    - message: Refine docs, plans, and add frontmatter fix scripts
+      date: 2025-12-25T03:55:41Z
+    - message: "conductor(plan): Mark task 'Rename identified files to compliant kebab-case names' as complete"
+      date: 2025-12-24T18:00:46Z
+  readme: "# steve\n\nCentralized repository for Claude Code agent configurations, hooks, commands, skills, and templates.\n\n## Project Status\n\n| Metric         | Value                                                                  |\n| -------------- | ---------------------------------------------------------------------- |\n| **Components** | 377 total (137 agents, 97 commands, 57 skills, 59 hooks, 27 templates) |\n| **Test Suite** | 415 tests passing                                                      |\n| **Coverage**   | 82.5%                                                                  |\n| **Python**     | 3.10+                                                                  |\n\n## Overview\n\nThis repository provides a well-organized collection of reusable components for Claude Code, including:\n\n- **Agents** - Sub-agent configurations organized by domain and specialization\n- **Hooks** - Claude hooks for analysis, guards, workflows, and lifecycle events\n- **Commands** - Slash commands for various development workflows\n- **Skills** - Reusable skills with bundled resources\n- **Rules** - Language and format-specific coding rules\n- **Templates** - Templates for creating new components\n\n## Map of Contents\n\n### Core Modules\n\n| Module                        | Description                        | Location           |\n| ----------------------------- | ---------------------------------- | ------------------ |\n| [Agents](steve/agents/)       | Sub-agent configurations by domain | `steve/agents/`    |\n| [Commands](steve/commands/)   | Slash commands for workflows       | `steve/commands/`  |\n| [Skills](steve/skills/)       | Reusable domain knowledge bundles  | `steve/skills/`    |\n| [Hooks](steve/hooks/)         | Event-driven automation            | `steve/hooks/`     |\n| [Templates](steve/templates/) | Component scaffolds                | `steve/templates/` |\n| [Rules](steve/rules/)         | Language-specific coding rules     | `steve/rules/`     |\n| [Helpers](steve/helpers/)     "
+- name: devkit
+  description: AI-powered dev workflow toolkit
+  url: https://github.com/89jobrien/devkit
+  kinds:
+    - GitHubRepo
+  language: Go
+  pushed_at: 2026-04-11T04:47:56Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "fix(repl): replace os.Exit with ErrExit sentinel for clean shutdown"
+      date: 2026-04-11T03:35:41Z
+    - message: "docs: update handoff"
+      date: 2026-04-11T03:29:38Z
+    - message: "fix(cmd): clarify repl auth contract, add cwd fallback, add execution-path tests"
+      date: 2026-04-11T02:23:59Z
+    - message: "feat(cmd): add devkit repl command and register chain+repl in main"
+      date: 2026-04-11T01:06:14Z
+    - message: "feat(cmd): add devkit chain command"
+      date: 2026-04-11T01:04:17Z
+    - message: "feat(repl): add readline REPL loop with ParseCommand and DispatchCommand"
+      date: 2026-04-11T01:02:13Z
+    - message: "feat(repl): add Session context store with --no-context support"
+      date: 2026-04-11T01:00:12Z
+    - message: "feat(chain): wire stage runners to existing devkit command packages"
+      date: 2026-04-11T00:58:29Z
+    - message: "feat(chain): add RunPipeline — preflight + stages + synthesis"
+      date: 2026-04-11T00:55:41Z
+    - message: "feat(chain): add SynthesisRunner — gpt-5.4, always-last stage"
+      date: 2026-04-11T00:54:19Z
+  readme: "# devkit\n\nAI-powered dev workflow toolkit. Extracts a self-correcting CI/agent loop into a reusable scaffold for any Go project.\n\n## What it does\n\n- **council** — runs parallel AI roles (strict critic, creative explorer, analyst, security reviewer, performance analyst) against your branch diff and synthesizes a weighted health score. Strict critic and analyst use Anthropic; creative explorer and performance analyst use OpenAI when `OPENAI_API_KEY` is set.\n- **review** — single-pass AI diff review focused on a configurable concern area\n- **diagnose** — runs an LLM agent against local logs and system state to report root cause, evidence, fix, and confidence level\n- **meta** — designs and runs parallel agents for any freeform task against your repo context\n- **ci-agent** — standalone binary that diagnoses failed CI jobs and opens/updates issues automatically (GitHub and Gitea)\n\n## Requirements\n\n- Go 1.23+\n- `ANTHROPIC_API_KEY` (all commands)\n- `OPENAI_API_KEY` (optional — used for two council roles and ci-agent fallback)\n- `GEMINI_API_KEY` (optional — ci-agent fallback only)\n- [gum](https://github.com/charmbracelet/gum) for the interactive installer\n- [`fd`](https://github.com/sharkdp/fd) and [`rg`](https://github.com/BurntSushi/ripgrep) — used by agent tools (GlobTool and GrepTool)\n\n## Install\n\n```sh\ncurl -fsSL https://raw.githubusercontent.com/89jobrien/devkit/v0.0.1/install.sh | bash\n```\n\nOr clone and run locally:\n\n```sh\ngit clone https://github.com/89jobrien/devkit\ncd devkit\nbash install.sh\n```\n\nThe installer will:\n1. Ask which components and CI platform(s) to enable\n2. Install the `devkit` and `ci-agent` binaries via `go install`\n3. Write `.devkit.toml` in your project root\n4. Copy the appropriate CI workflow file (`.github/workflows/ci.yml` or `.gitea/workflows/ci.yml`)\n5. Install git hooks — `pre-push` runs `devkit council --base main` (non-blocking); `post-commit` prints a council reminder\n6. Write Claude Code hooks to `.claude/settings.json` "
+- name: hand
+  description: Session handoff toolkit for Claude Code — start, end, and visualize project state via HANDOFF.yaml
+  url: https://github.com/89jobrien/hand
+  kinds:
+    - GitHubRepo
+  language: Shell
+  pushed_at: 2026-04-05T22:42:51Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "fix: auto-bump version in pre-commit — patch on modify, minor on new files"
+      date: 2026-04-05T22:42:31Z
+    - message: "feat: add justfile init, .githooks, and onboard skill"
+      date: 2026-04-05T20:53:55Z
+    - message: "feat: initial commit — hand session handoff plugin"
+      date: 2026-04-05T20:27:00Z
+    - message: "fix: author must be object not string"
+      date: 2026-04-05T17:52:14Z
+    - message: "docs: add installation instructions"
+      date: 2026-04-05T17:51:01Z
+    - message: "feat: initial commit — hand session handoff plugin"
+      date: 2026-04-05T17:43:42Z
+  readme: "# hand — Session Handoff Plugin\n\nThree skills for structured project handoff across Claude Code sessions.\n\n## Installation\n\n```bash\nclaude plugin add github:89jobrien/hand\n```\n\n## Skills\n\n| Command | When to use |\n|---|---|\n| `/hand:on` | Start of session — orient, sync doob, triage and act on open items |\n| `/hand:off` | End of session — update HANDOFF.yaml, write .ctx/, sync doob, commit |\n| `/hand:over` | On demand — generate visual report + Mermaid diagrams in .ctx/HANDOVER.md |\n\n## File Layout\n\n| File | Location | Committed | Purpose |\n|---|---|---|---|\n| `HANDOFF.<project>.<base>.yaml` | repo root | yes | Tasks, items, log — doob source of truth |\n| `.ctx/HANDOFF.state.yaml` | `.ctx/` | no | Project snapshot (build/tests/branch/notes) |\n| `.ctx/HANDOFF.md` | `.ctx/` | no | Rendered reference doc (table view) |\n| `.ctx/HANDOVER.md` | `.ctx/` | no | Visual report with Mermaid diagrams |\n\n`.ctx/` is fully generated — add it to `.gitignore`. Only `HANDOFF.yaml` is committed.\n\n## Workflow\n\n```\nsession start → /hand:on  → syncs doob, reviews human-edits, triages P0/P1/P2\n during work  →            → edit HANDOFF.yaml directly for human-edit overrides\n  session end → /hand:off → updates yaml, writes .ctx/, syncs doob, commits\n   on demand  → /hand:over → writes .ctx/HANDOVER.md with diagrams\n```\n\n## HANDOFF.yaml Schema\n\n```yaml\nproject: <name>\nid: <prefix>        # first 7 chars, used for item IDs\nupdated: <YYYY-MM-DD>\n\nitems:\n  - id: <prefix>-<n>\n    doob_uuid: <uuid>           # written by doob sync\n    name: <kebab-slug>          # immutable\n    priority: P0 | P1 | P2     # immutable\n    status: open | done | parked | blocked\n    title: <one-line>           # immutable\n    description: <detail>\n    files: [<path>]\n    completed: <YYYY-MM-DD>     # when status: done\n    extra:\n      - date: <YYYY-MM-DD>\n        type: note | blocker | decision | discovery | escalation | human-edit\n        field: <field>          # human-edit only\n        "
+- name: jorts
+  description: null
+  url: https://github.com/89jobrien/jorts
+  kinds:
+    - GitHubRepo
+  language: Shell
+  pushed_at: 2026-04-02T20:43:07Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "docs: add repository guidelines and readme"
+      date: 2026-04-02T20:43:04Z
+    - message: "chore: add tailscale setup script"
+      date: 2026-04-02T20:42:05Z
+  readme: |
+    # jorts
+
+    Interactive Tailscale setup helper for Linux.
+
+    ## Usage
+
+    ```bash
+    ./tailscale-setup.sh
+    ```
+
+    The script guides you through enabling Tailscale SSH, selecting an exit node,
+    advertising subnet routes, and running basic connectivity checks.
+
+    ## Notes
+
+    - Some steps require `sudo`.
+    - You may need to approve exit nodes and subnet routes in the Tailscale admin console.
+- name: pjlib
+  description: null
+  url: https://github.com/89jobrien/pjlib
+  kinds:
+    - GitHubRepo
+  language: Shell
+  pushed_at: 2026-03-16T02:12:58Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: Merge chore/archive-core-sets-2026-01-20 into main
+      date: 2026-03-16T02:12:42Z
+    - message: "chore: archive legacy agents and reorganize structure"
+      date: 2026-03-16T02:08:24Z
+    - message: "docs: optimize documentation for AI consumption"
+      date: 2026-03-16T02:02:13Z
+    - message: "feat: add skills development toolkit with validation and automation"
+      date: 2026-03-15T20:26:00Z
+    - message: "docs: add doob sync implementation plan"
+      date: 2026-03-04T08:41:43Z
+    - message: "docs: add doob sync plugin system design"
+      date: 2026-03-04T08:38:28Z
+    - message: "chore: archive legacy components to steve repo"
+      date: 2026-03-04T05:09:09Z
+    - message: "feat: add Maestro code review commands with hexagonal architecture support"
+      date: 2026-03-04T04:49:26Z
+    - message: "chore: cleanup results and updated configuration"
+      date: 2026-02-23T13:36:55Z
+    - message: "test: add integration tests and documentation"
+      date: 2026-02-23T13:12:50Z
+- name: tbh
+  description: CLI tool for running parallel agent experiments with automatic metric collection and statistical analysis
+  url: https://github.com/89jobrien/tbh
+  kinds:
+    - GitHubRepo
+  language: Go
+  pushed_at: 2026-03-05T09:41:31Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: Implement FR3 (benchmark aggregation) and FR4 (report generation)
+      date: 2026-03-05T05:34:28Z
+    - message: Simplify justfile to 5 essential commands
+      date: 2026-03-05T05:29:38Z
+    - message: Add justfile with development and demo commands
+      date: 2026-03-05T05:22:52Z
+    - message: Add interactive CLI mode with guided prompts
+      date: 2026-03-05T05:20:13Z
+    - message: "Initial commit: tbh CLI for parallel agent experiments"
+      date: 2026-03-05T05:15:06Z
+  readme: |-
+    # tbh
+
+    A command-line tool for running parallel agent experiments with automatic metric collection and statistical
+    analysis.
+
+    ## Overview
+
+    tbh enables developers to objectively compare different approaches, configurations, or implementations by
+    running controlled experiments and collecting quantitative evidence about performance, quality, and cost.
+
+    ## Features
+
+    - **Workspace Management**: Structured organization for experiment results
+    - **Automatic Metric Collection**: Capture timing and token data from agent task notifications
+    - **Statistical Analysis**: Mean, standard deviation, and delta calculations
+    - **Comparison Reports**: Human-readable markdown reports with clear recommendations
+    - **Programmatic Grading**: Evaluate outputs against custom assertions
+
+    ## Installation
+
+    ```bash
+    go install ./cmd/tbh
+    ```
+
+    Or download pre-built binaries from the releases page.
+
+    ## Quick Start
+
+    ### Interactive Mode (Recommended)
+
+    ```bash
+    # 1. Initialize workspace (interactive prompts)
+    tbh init
+
+    # 2. Run your experiments (spawn agents manually)
+    # ... agents run ...
+
+    # 3. Record metrics (interactive selection)
+    tbh record timing
+
+    # 4. Generate benchmark
+    tbh benchmark --workspace my-test/iteration-1
+
+    # 5. View report
+    cat my-test/iteration-1/benchmark.md
+    ```
+
+    ### Non-Interactive Mode
+
+    ```bash
+    # 1. Initialize workspace with flags
+    tbh init my-test --configs baseline,optimized
+
+    # 2. Run your experiments
+    # ... agents run ...
+
+    # 3. Record metrics with flags
+    tbh record timing --run my-test/iteration-1/case-1/baseline --tokens 12500 --duration 15.2
+    tbh record timing --run my-test/iteration-1/case-1/optimized --tokens 9800 --duration 11.8
+
+    # 4. Generate benchmark
+    tbh benchmark --workspace my-test/iteration-1
+
+    # 5. View report
+    cat my-test/iteration-1/benchmark.md
+    ```
+
+    ## Usage
+
+    ### Interactive Mode
+
+    tbh supports interactive mode for a user-friendly experience:
+
+    **Initialize Workspace Interactively:**
+    ```bash
+    tbh init
+    # or
+    tbh init -i
+    ```
+
+    You'll be prompted for:
+    - Test workspace name
+    - Configura
+- name: shell-aliases
+  description: null
+  url: https://github.com/89jobrien/shell-aliases
+  kinds:
+    - GitHubRepo
+  language: Shell
+  pushed_at: 2026-02-28T04:50:11Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "feat: initial public aliases repo"
+      date: 2026-02-28T04:50:06Z
+  readme: |
+    # shell-aliases
+
+    Public repo with aliases only.
+
+    ## Files
+
+    - `zsh/aliases.zsh`
+    - `fish/aliases.fish`
+
+    ## Install
+
+    ### zsh
+
+    Add to `~/.zshrc`:
+
+    ```zsh
+    [ -f "$HOME/shell-aliases/zsh/aliases.zsh" ] && source "$HOME/shell-aliases/zsh/aliases.zsh"
+    ```
+
+    ### fish
+
+    Add to `~/.config/fish/config.fish`:
+
+    ```fish
+    if test -f "$HOME/shell-aliases/fish/aliases.fish"
+        source "$HOME/shell-aliases/fish/aliases.fish"
+    end
+    ```
+- name: hooks
+  description: null
+  url: https://github.com/89jobrien/hooks
+  kinds:
+    - GitHubRepo
+  language: Go
+  pushed_at: 2026-02-12T06:46:02Z
+  version: hooks-v0.3.2
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: "Merge pull request #12 from 89jobrien/release-please--branches--main--components--hooks"
+      date: 2026-02-12T06:45:53Z
+    - message: "chore(main): release hooks 0.3.2"
+      date: 2026-02-12T06:29:50Z
+    - message: "Merge pull request #11 from 89jobrien/fix/absolute-paths-and-ci"
+      date: 2026-02-12T06:29:39Z
+    - message: "fix: resolve install.sh exit code issue and add Makefile help"
+      date: 2026-02-12T06:18:51Z
+    - message: "Merge pull request #10 from 89jobrien/release-please--branches--main--components--hooks"
+      date: 2026-02-12T06:17:39Z
+    - message: "chore(main): release hooks 0.3.1"
+      date: 2026-02-12T05:52:21Z
+    - message: "Merge pull request #9 from 89jobrien/fix/absolute-paths-and-ci"
+      date: 2026-02-12T05:52:06Z
+    - message: Merge branch 'main' into fix/absolute-paths-and-ci
+      date: 2026-02-12T05:49:36Z
+    - message: "fix: use absolute paths for hook binaries and harden CI"
+      date: 2026-02-12T05:48:25Z
+    - message: "Merge pull request #7 from 89jobrien/release-please--branches--main--components--hooks"
+      date: 2026-02-12T05:27:06Z
+  readme: |-
+    # Hooks
+
+    [![ci](https://github.com/89jobrien/hooks/actions/workflows/ci.yml/badge.svg)](https://github.com/89jobrien/hooks/actions/workflows/ci.yml)
+    [![release-please](https://github.com/89jobrien/hooks/actions/workflows/release-please.yml/badge.svg)](https://github.com/89jobrien/hooks/actions/workflows/release-please.yml)
+    [![docker-publish](https://github.com/89jobrien/hooks/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/89jobrien/hooks/actions/workflows/docker-publish.yml)
+
+    Go hooks for Cursor/Claude and other agents: security, quality, and session lifecycle.
+
+    **Supported agents:** Cursor (including when using the Codex model), Claude in Cursor, and OpenCode via the generated adapter plugin. The same hook binaries and contract work across agents. See [docs/hook-contract.md](docs/hook-contract.md) for the stdin/stdout/exit contract and tool-name mapping.
+
+    Codebase layout and conventions: [STRUCTURE.md](STRUCTURE.md).
+
+    ## Commands
+
+    ```bash
+    make all # build 26 binaries (hooks + gen-config + interactive) to bin/
+    make test # run tests (~0.5s)
+    make config # from repo root: generate .cursor/hooks.json, .claude/settings.json, .opencode/ (manifest + adapter plugin), and (if env in config) .cursor/hooks.env. Requires bin/ built first (make all).
+    make clean # remove bin/
+    ```
+
+    From repo root: `./hooks/bin/interactive` (or from inside hooks: `bin/interactive`) for an interactive menu to enable/disable hooks, then save to regenerate config. `./hooks/bin/interactive scan` scans for project hooks (from cwd upward) and reports global hooks at `~/.cursor/hooks.json`.
+
+    ## Container
+
+    Build:
+
+    ```bash
+    docker build -t ghcr.io/89jobrien/hooks:local .
+    ```
+
+    Run a hook:
+
+    ```bash
+    docker run --rm ghcr.io/89jobrien/hooks:local audit
+    ```
+
+    ## Hooks (by event)
+
+    | Event | Hooks |
+    |-------|--------|
+    | sessionStart | session-guard, time-tracker-start |
+    | beforeSubmitPrompt | prompt-enricher |
+    | preToolUse | rate-limiter, dry-run-mode, validate-shell, no-long-running, network-fen
+- name: TradingAgents
+  description: "TradingAgents: Multi-Agents LLM Financial Trading Framework"
+  url: https://github.com/89jobrien/TradingAgents
+  kinds:
+    - GitHubRepo
+  language: Python
+  pushed_at: 2025-12-03T22:37:10Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: Improve CLI with loading indicators and enhance discovery pipeline
+      date: 2025-12-03T05:49:49Z
+    - message: Add Brave and Tavily news data vendors with retry handling
+      date: 2025-12-03T05:43:27Z
+    - message: update README.md
+      date: 2025-12-03T03:43:21Z
+    - message: "Merge pull request #1 from 89jobrien/001-trending-stock-discovery"
+      date: 2025-12-03T01:44:33Z
+    - message: "Merge pull request #3 from 89jobrien/coderabbitai/utg/3f6b1e9"
+      date: 2025-12-03T01:44:00Z
+    - message: Update stock_resolver.py
+      date: 2025-12-03T01:41:02Z
+    - message: Update openai.py
+      date: 2025-12-03T01:40:58Z
+    - message: Update interface.py
+      date: 2025-12-03T01:40:56Z
+    - message: Update alpha_vantage_news.py
+      date: 2025-12-03T01:40:50Z
+    - message: Update google.py
+      date: 2025-12-03T01:40:44Z
+  readme: |-
+    # TradingAgents: Multi-Agent LLM Financial Trading Framework
+
+    A multi-agent LLM-powered financial trading framework that simulates the decision-making process of a professional trading firm through specialized AI agents.
+
+    [Framework](#tradingagents-framework) | [Installation](#installation) | [CLI Usage](#cli-usage) | [Package Usage](#package-usage) | [Attribution](#attribution)
+
+    ## TradingAgents Framework
+
+    TradingAgents is a multi-agent trading framework that simulates the dynamics of a professional trading firm. The system deploys specialized LLM-powered agents including fundamental analysts, sentiment experts, technical analysts, traders, and risk management teams that collaboratively evaluate market conditions and inform trading decisions. These agents engage in structured debates to determine optimal strategies through a LangGraph-based orchestration system.
+
+    <p align="center">
+      <img src="assets/schema.png" style="width: 100%; height: auto;">
+    </p>
+
+    TradingAgents is designed for research purposes. Trading performance varies based on the chosen language models, model temperature, trading periods, data quality, and other non-deterministic factors. This framework is not intended as financial, investment, or trading advice.
+
+    The framework decomposes complex trading tasks into specialized roles, enabling a robust, scalable approach to market analysis and decision-making.
+
+    ### Analyst Team
+
+    The analyst team consists of four specialized agents that gather and analyze different aspects of market data:
+
+    - **Fundamentals Analyst:** Evaluates company financials and performance metrics, identifying intrinsic values and potential red flags.
+    - **Sentiment Analyst:** Analyzes social media and public sentiment using sentiment scoring algorithms to gauge short-term market mood.
+    - **News Analyst:** Monitors global news and macroeconomic indicators, interpreting the impact of events on market conditions.
+    - **Technical Analyst:** Utilizes technical indicators (such as MACD and RSI
+- name: agentic
+  description: RAG Agent that generates embeddings for a repository and answers queries
+  url: https://github.com/89jobrien/agentic
+  kinds:
+    - GitHubRepo
+  language: Python
+  pushed_at: 2025-11-06T12:55:27Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: Delete scripts/embtest.py
+      date: 2025-11-06T12:55:26Z
+    - message: Update README.md
+      date: 2025-08-18T15:43:40Z
+    - message: Update .gitignore
+      date: 2025-08-08T08:11:21Z
+    - message: moved agents to their own dir and refactored
+      date: 2025-08-06T08:44:16Z
+    - message: Merge branch 'master' of https://github.com/89jobrien/agentic
+      date: 2025-08-06T08:42:58Z
+    - message: "refactor: Move agent files to agents directory and update imports accordingly"
+      date: 2025-08-06T08:40:32Z
+    - message: "style: Run linter to clean up code style in test_conversational_agent.py"
+      date: 2025-08-06T08:31:44Z
+    - message: "fix: Import patch_azure_chat fixture in test_conversational_agent.py"
+      date: 2025-08-06T08:31:35Z
+    - message: "test: Fix test to use patched get_ollama_embedding function correctly"
+      date: 2025-08-06T08:30:37Z
+    - message: "fix: Update import path for get_ollama_embedding in test file"
+      date: 2025-08-06T08:29:40Z
+  readme: |-
+    # Agentic
+
+    A Retrieval Augmented Generation (RAG) agent that analyzes code repositories and suggests improvements.
+
+    ## Configuration
+
+    1. Copy `config.yaml.example` to `config.yaml`.
+    2. Fill in the values for all keys:
+       - `database_url`: Your database connection string (e.g., for Postgres).
+       - `ollama_url`: Local URL for Ollama embedding API.
+       - `ollama_model`: The embedding model to use with Ollama.
+       - `azure_openai_*`: Required Azure OpenAI API settings.
+       - `redis_url`: URL for your Redis session store (if used).
+
+    ## Running
+
+    ### Local
+
+    ```bash
+    uv pip install .
+    uvicorn agentic.main:app --reload
+    ```
+
+    ### Docker
+
+    ```bash
+    docker build -t agentic .
+    docker run -p 8000:8000 -v $(pwd)/config.yaml:/app/config.yaml agentic
+    ```
+
+    ## Linting & Code Quality
+
+    This project uses [pre-commit](https://pre-commit.com/) with:
+
+    - [Black](https://github.com/psf/black) for code formatting
+    - [Mypy](https://github.com/python/mypy) for static type checking
+    - [Ruff](https://github.com/astral-sh/ruff) for linting
+
+    To enable locally, install pre-commit and register hooks:
+
+    ```sh
+    pre-commit install
+    ```
+
+    To run checks manually:
+
+    ```sh
+    pre-commit run --all-files
+    ```
+
+    Configuration for these tools is found in `.pre-commit-config.yaml` and `pyproject.toml`.
+
+    ## API Endpoints
+
+    - `GET /` — Welcome message.
+    - `POST /chat` — Chat endpoint.
+      Request JSON:
+      ```json
+      {
+        "session_id": "optional-session-id",
+        "message": "Hello, agent!"
+      }
+
+    ## Additional Documentation
+
+    - [Installation & Usage Guide](docs/installation.md)
+    - [Usage Guide](docs/usage.md)
+    - [API Reference](docs/api.md)
+    - Example configuration: `config.yaml.example`
+    - Database setup scripts: `scripts/init_db.py`, `scripts/migrate_db.py`
+    - See also `tests/` for automated test examples
+
+    ## CLI and Admin Scripts
+
+    Most operational features (ingestion, session management, statistics, reindexing, testing) are provided through a unified CLI:
+
+    ```sh
+    python scripts/manage.py --help
+    ```
+    [![pre-commit enabled](https://img.shields.io/
+- name: valai
+  description: ValAI is an agentic personal assistant with productivity in mind.
+  url: https://github.com/89jobrien/valai
+  kinds:
+    - GitHubRepo
+  language: Python
+  pushed_at: 2025-11-02T15:36:42Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: old stash
+      date: 2025-11-02T15:36:35Z
+    - message: Update pyproject.toml
+      date: 2025-07-29T20:57:32Z
+    - message: Update pyproject.toml
+      date: 2025-07-29T20:56:35Z
+    - message: updated tools
+      date: 2025-07-18T04:28:11Z
+    - message: Update README.md
+      date: 2025-07-15T03:06:13Z
+    - message: Update README.md
+      date: 2025-07-15T03:03:24Z
+    - message: Update README.md
+      date: 2025-07-15T03:02:46Z
+    - message: Update README.md
+      date: 2025-07-15T03:02:18Z
+    - message: Update README.md
+      date: 2025-07-15T03:01:47Z
+    - message: Update README.md
+      date: 2025-07-15T03:00:32Z
+  readme: |-
+    # ValAI: A Modular, Multi-Agent AI Assistant
+
+    ValAI is a sophisticated, command-line-based **AI assistant** built on a powerful multi-agent architecture. It uses a central router to intelligently delegate tasks to a suite of specialized agents, each equipped with unique tools for specific requests. This modular design allows for easy extension and customization, making ValAI a robust platform for building advanced AI applications.
+
+    ---
+
+    ## ✨ Core Features
+
+    - **Dynamic Agent Routing:** A central router analyzes user queries and dynamically routes them to the most appropriate specialist agent.
+    - **Modular Agent Architecture:** Each specialist agent (e.g., Search Agent, Code Agent, Calendar Agent) is defined by a simple YAML configuration, making it easy to add, remove, or modify capabilities.
+    - **Enable/Disable Agents:** A centralized configuration allows you to easily toggle agents on or off without changing the core code.
+    - **Rich Toolset:** Comes pre-packaged with tools for:
+      - Web Search & Browsing
+      - Code Execution
+      - File System I/O
+      - Calendar Management (Google Calendar)
+      - Email Sending
+      - Note-Taking & To-Do Lists
+      - Long-Term Knowledge Base (RAG)
+      - System Monitoring
+    - **Configurable LLM Backends:** Seamlessly switch between local inference with Ollama and powerful cloud models via OpenAI and Azure.
+    - **Interactive CLI:** A user-friendly command-line interface powered by `rich` for a clean and colorful user experience.
+
+    ---
+
+    ## 📂 Project Structure
+
+    ```ascii
+    .
+    ├── config/
+    │   ├── agents/
+    │   │   ├── calendar_agent.yaml
+    │   │   ├── code_agent.yaml
+    │   │   └── ... (other agent configs)
+    │   └── router.yaml
+    ├── logs/
+    │   └── valai_assistant.log
+    ├── src/
+    │   └── valai/
+    │       ├── agents/
+    │       │   └── base.py         # Core agent loading and routing logic
+    │       ├── core/
+    │       │   ├── assistant.py    # Core asynchronous Assistant
+- name: docs
+  description: null
+  url: https://github.com/89jobrien/docs
+  kinds:
+    - GitHubRepo
+  language: MDX
+  pushed_at: 2025-10-28T03:32:47Z
+  version: null
+  stars: null
+  downloads: null
+  recent_commits:
+    - message: Documentation edits made through Mintlify web editor
+      date: 2025-10-28T03:32:47Z
+    - message: Initial commit
+      date: 2025-10-28T03:15:53Z
+  readme: |-
+    # Joe's Docs
+
+    ### Resources
+
+    - [Mintlify documentation](https://mintlify.com/docs)
