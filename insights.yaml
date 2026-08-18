@@ -1,62 +1,69 @@
 generated_at: "2026-08-18T00:00:00Z"
 summary: >-
-  Joe builds the infrastructure that makes agent-driven development workflows
-  observable, safe, and fast to trust — CI health gates, command-rewrite
-  guardrails, and governance tooling for autonomous pipelines, mostly in Rust.
-  He treats the shell, CI, and runtime as one governed system rather than
-  three separate concerns.
-tagline: Building the guardrails that let agents ship code safely.
-role: Systems architect & agentic-tooling builder
+  Joseph O'Brien is a platform and developer tooling engineer working across
+  Rust and Python to build reliable internal tools, infrastructure automation,
+  and AI-assisted engineering workflows. He operates where product code,
+  infrastructure, data/ML workflows, and developer experience meet — hardening
+  test and release pipelines, decomposing large systems into maintainable
+  boundaries, and turning fragile manual workflows into repeatable automation.
+tagline: Turning fragile manual workflows into repeatable, agent-safe automation.
+role: Agentic Engineer
 focus_areas:
-  - Rust
-  - Hexagonal architecture
-  - Agentic dev workflows
-  - CI/CD health gates
-  - Nushell
-  - Developer tooling
+  - Rust workspace architecture
+  - Hexagonal / ports-and-adapters design
+  - Infrastructure automation
+  - AI/LLM integration & MCP
+  - Developer experience tooling
+  - Python & ML workflows
 active_projects:
   - name: minibox
-    description: Linux VM/VPS manager — Tailscale, QEMU, SSH provisioning, hexagonal Rust workspace
+    description: Container runtime (Rust) — OCI image pulling, Linux namespace isolation, cgroups v2, overlay filesystem
     url: https://github.com/89jobrien/minibox
   - name: taskit
-    description: Config-driven CI pipeline runner with health gates and a git branching workflow
+    description: Hexagonal task/pipeline engine with a built-in git branching workflow (status/promote/finish/guard)
     url: https://github.com/89jobrien/taskit
-  - name: doob
-    description: Agent-first todo/task tracker with GitHub sync and handoff workflows
-    url: https://github.com/89jobrien/doob
-  - name: atelier
-    description: Claude Code plugin bundling handoff, herald, sentinel, and forge agents
-    url: https://github.com/89jobrien/atelier
   - name: crux
-    description: Agentic Rust DSL and runtime trace/pipeline model
+    description: Agentic Rust DSL and runtime trace model
     url: https://github.com/89jobrien/crux
-  - name: devkit
-    description: AI-powered dev workflow toolkit in Go — council review, diagnose, CI triage
-    url: https://github.com/89jobrien/devkit
+  - name: coursers
+    description: CLI shortcuts learning system — learns from shell history
+    url: https://github.com/89jobrien/coursers
+  - name: looprs
+    description: Rust LLM agent loop CLI — multi-turn sessions, tools, providers
+    url: https://github.com/89jobrien/looprs
+  - name: godmode
+    description: Reusable Claude Code skills and agents library
+    url: https://github.com/89jobrien/godmode
 stats:
-  sessions_per_day: "~15"
-  total_sessions: 2638
-  peak_day: "2026-03-25, 31 sessions active within a single hour"
+  sessions_per_day: "~10"
+  total_sessions: 331
 workflow_style: >-
-  Terminal-first and agent-augmented: runs a high-volume, multi-agent
-  development loop (2,600+ sessions over six months, 87% successful outcomes,
-  97% cache hit rate) with heavy delegation to subagents, aggressive
-  course-correction via custom hooks and rule engines, and structured handoff
-  state as the backbone of continuity between sessions.
+  Practices TDD, pre-commit quality gates, and systematic debugging; manages
+  work through structured todos and per-repo handoff state files rather than
+  relying on memory between sessions. Runs multi-agent review across API
+  surface, SOLID principles, test coverage, and blast radius in parallel,
+  triaging findings by severity and landing fixes in focused, atomic waves.
+  Directs agent-assisted development with explicit guardrails — a short
+  design sketch before non-trivial implementation, per-crate parallel
+  subagents merged and tested sequentially rather than direct-to-main, and
+  per-item confirmation on any destructive or credential-touching operation.
 what_you_work_on:
-  - name: Agentic infrastructure & CI governance
+  - name: Platform & infrastructure automation
     description: >-
-      Command-rewrite guardrails, health gates, and observability hooks that
-      make autonomous agent pipelines safe to run unsupervised.
-  - name: Container & VM tooling
+      Kubernetes-facing platform code, server lifecycle automation, and CI
+      workflow orchestration, designed for strong validation and operator
+      clarity.
+  - name: Rust systems architecture
     description: >-
-      A hexagonal Rust container/VM runtime with agent-controllable
-      provisioning, CI hardening, and protocol design.
-  - name: Developer workflow automation
+      Workspace-level design in hexagonal/ports-and-adapters style, cross
+      compiling from Apple Silicon to Linux, with cargo-deny and clippy gates
+      enforced before every commit.
+  - name: Agentic tooling & AI integration
     description: >-
-      Custom Claude Code plugins, skills, and CLI tools that structure
-      multi-agent orchestration, task tracking, and cross-session handoff.
-  - name: Knowledge & context tooling
+      Claude Code plugins, MCP servers, and model-backed systems built with
+      property tests, integration coverage, and repo-grounded validation
+      rather than aspirational documentation.
+  - name: Developer experience tooling
     description: >-
-      Systems for capturing and hydrating project context across sessions and
-      agents — handoff journals, knowledge graphs, and structured memory.
+      Custom CLIs, toolchain management, and handoff-driven async workflows
+      that turn manual, fragile processes into repeatable automation.
