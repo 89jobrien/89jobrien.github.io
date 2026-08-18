@@ -47,7 +47,7 @@ jobs:
         working-directory: _bazaar
 
       - name: Run generator
-        run: ../target/release/bz --output-dir $GITHUB_WORKSPACE --insights examples/insights.yaml
+        run: target/release/bz --output-dir $GITHUB_WORKSPACE --insights examples/insights.yaml
         working-directory: _bazaar
         env:
           BAZAAR_GITHUB_USER: ${{ secrets.BAZAAR_GITHUB_USER }}
