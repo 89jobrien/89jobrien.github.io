@@ -33,45 +33,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cargo-
 
-      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
-
-      - name: Restore private data/ files from secrets
-        # data/ holds personal usage/persona exports and is intentionally
-        # gitignored — never committed. Each *.txt file is stored as a
-        # gzip+base64 repo secret and restored here at CI time only.
+      - name: Use committed insights.yaml
+        # insights.yaml is generated offline (see scripts/synthesize_insights.py
+        # for the manual regen path, which needs ANTHROPIC_API_KEY and the
+        # private data/*.txt files) and committed here so the automated sync
+        # doesn't depend on a live API call or account billing status.
         run: |
-          mkdir -p data
-          restore() {
-            local name="$1" out="$2"
-            if [ -n "${!name}" ]; then
-              printf '%s' "${!name}" | base64 -d | gunzip > "data/${out}"
-            fi
-          }
-          restore DATA_OSS_TXT oss.txt
-          restore DATA_PERS2_TXT pers2.txt
-          restore DATA_PERS3_TXT pers3.txt
-          restore DATA_PERSONA_TXT persona.txt
-          restore DATA_TIME_TXT time.txt
-          restore DATA_USAGE_TXT usage.txt
-        env:
-          DATA_OSS_TXT: ${{ secrets.DATA_OSS_TXT }}
-          DATA_PERS2_TXT: ${{ secrets.DATA_PERS2_TXT }}
-          DATA_PERS3_TXT: ${{ secrets.DATA_PERS3_TXT }}
-          DATA_PERSONA_TXT: ${{ secrets.DATA_PERSONA_TXT }}
-          DATA_TIME_TXT: ${{ secrets.DATA_TIME_TXT }}
-          DATA_USAGE_TXT: ${{ secrets.DATA_USAGE_TXT }}
-
-      - name: Synthesize insights.yaml
-        run: uv run scripts/synthesize_insights.py --data-dir data/ --out _bazaar/examples/insights.yaml
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          mkdir -p _bazaar/examples
+          cp insights.yaml _bazaar/examples/insights.yaml
 
       - name: Build bazaar-gen
         run: cargo build --release -p bazaar-gen
         working-directory: _bazaar
 
       - name: Run generator
-        run: ../target/release/bz --output_dir $GITHUB_WORKSPACE --insights examples/insights.yaml
+        run: ../target/release/bz --output-dir $GITHUB_WORKSPACE --insights examples/insights.yaml
         working-directory: _bazaar
         env:
           BAZAAR_GITHUB_USER: ${{ secrets.BAZAAR_GITHUB_USER }}
