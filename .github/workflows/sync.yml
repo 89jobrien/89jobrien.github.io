@@ -33,8 +33,33 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cargo-
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+
+      - name: Restore private data/ files from secrets
+        # data/ holds personal usage/persona exports and is intentionally
+        # gitignored — never committed. Each *.txt file is stored as a
+        # gzip+base64 repo secret and restored here at CI time only.
+        run: |
+          mkdir -p data
+          restore() {
+            local name="$1" out="$2"
+            if [ -n "${!name}" ]; then
+              printf '%s' "${!name}" | base64 -d | gunzip > "data/${out}"
+            fi
+          }
+          restore DATA_OSS_TXT oss.txt
+          restore DATA_PERS2_TXT pers2.txt
+          restore DATA_PERS3_TXT pers3.txt
+          restore DATA_PERSONA_TXT persona.txt
+          restore DATA_TIME_TXT time.txt
+          restore DATA_USAGE_TXT usage.txt
+        env:
+          DATA_OSS_TXT: ${{ secrets.DATA_OSS_TXT }}
+          DATA_PERS2_TXT: ${{ secrets.DATA_PERS2_TXT }}
+          DATA_PERS3_TXT: ${{ secrets.DATA_PERS3_TXT }}
+          DATA_PERSONA_TXT: ${{ secrets.DATA_PERSONA_TXT }}
+          DATA_TIME_TXT: ${{ secrets.DATA_TIME_TXT }}
+          DATA_USAGE_TXT: ${{ secrets.DATA_USAGE_TXT }}
 
       - name: Synthesize insights.yaml
         run: uv run scripts/synthesize_insights.py --data-dir data/ --out _bazaar/examples/insights.yaml
